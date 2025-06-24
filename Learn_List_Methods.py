@@ -1,12 +1,30 @@
-# Date: 6/23b/2025  version 001
+# Date: 6/23c/2025  version 001
 # This Python file will be similar to the earlier Learn_String_Methods and also base don Indently's YouTube video
-# located at: https://www.youtube.com/watch?v=0yySumZTxJ0&t=1s
+# (1) located at: https://www.youtube.com/watch?v=0yySumZTxJ0&t=1s
 # There are only 11 list methods according to Indently --NOT counting Dunder methods
 
+# Aside from Indently, there are other worthwhile videos to cover here including:
+# (2) Mosh --- How to Use Lists in Python: https://www.youtube.com/watch?v=9OeznAkyQz4
+# (3) Bro Code -- Python lists, sets, and tuples explained: https://www.youtube.com/watch?v=gOMW_n2-2Mw
+
+# Indently's code for printing out all the methods is as follows
+def gen_list_of_methods():
+    i: int =0
+    for method in dir(list):    #<-- how do we set the path for directory? Don't have to. We're executing inside Py!
+        i += 1
+        print(i, method, sep=': ')
+        if i > 100:
+            break
+        else:
+            pass
+gen_list_of_methods()
+print('*' *20, '\n')
+
+# Let's start with an example list of string objects:
 example_list_01: list[str] = ['Adam', 'Bob', 'Calvin', 'Dario']  #<-- a type hinted list of strings, people names
 
-#   APPEND()   = adds a new item to the specified list
-n=1; method_name = 'append()'; example_list_01.append('Ernie')
+#   APPEND()   = adds a new item to the specified list (append is number 38 in the gen_list output)
+n=38; method_name = 'append()'; example_list_01.append('Ernie')
 print(f'{n}  {method_name}  output= {example_list_01} \n\n')
 
 #   CLEAR()     = clears the specified list (empties it)
@@ -49,8 +67,39 @@ print(f'{n} \t{method_name} \toutput= {locate} is index location of arg1 \n')
 
 #   INSERT  = inserts into the specified locationof arg1, the given element specified by arg2
 n+=1; method_name = 'insert()'; example_list_01 = ['Adam', 'Bob', 'Calvin', 'Dario']
-example_list_01.insert(1, 'George'
-                       )
+example_list_01.insert(1, 'George')
 print(f'{n} \t{method_name} \toutput= {example_list_01} with its insert included \n')
 
-#
+#   POP = pops an indexed item off the acted-on list and returns the popped item, i= -1 by default
+n+=1; method_name = 'pop()'; example_list_01 = ['Adam', 'Bob', 'Calvin', 'Dario', 'Ernie', 'Frank']
+original = example_list_01.copy()
+last = example_list_01.pop()
+first= example_list_01.pop(0)
+print(f'{n} \t{method_name} \toutput1= {last} = popped off from end of list')
+print(f' \t\t\t output2= {first} = popped off from front of list')
+print(f' \t\t\t original list = {original} ')
+print(f' \t\t\t current list = {example_list_01} = after two pop offs \n')
+
+#   REMOVE  = similar to POP except it does not return the removed item AND arg1 must be supplied as a member of the list
+n+=1; method_name = 'remove()'; example_list_01 = ['Adam', 'Bob', 'Calvin', 'Dario', 'Ernie', 'Frank']
+original = example_list_01.copy()
+end = len(example_list_01)-1
+pop_off_item = example_list_01[-1]
+example_list_01.remove(pop_off_item)
+print(f'{n} \t{method_name} \toutput1= {example_list_01} = current after removal from end of list')
+pop_off_item = example_list_01[0]
+example_list_01.remove(pop_off_item)
+print(f' \t\t\t output2= {example_list_01} = current after removal from front of list')
+print(f' \t\t\t original list = {original} \n')
+
+#   REVERSE =  reverses the order in the list
+n+=1; method_name = 'remove()'; example_list_01 = ['Adam', 'Bob', 'Calvin', 'Dario', 'Ernie', 'Frank']
+flipped = example_list_01.reverse()
+print(f'{n} \t{method_name} \toutput1= {example_list_01} = current after reversal of the list \n')
+
+#   SORT    = sorts the items in the list according to a key, default is alphabetic but case sensitive
+n+=1; method_name = 'sort()'
+example_list_01.sort()
+print(f'{n} \t{method_name} \toutput1= {example_list_01} = current after reversal and sorting')
+example_list_01.sort(key = lambda name: len(name))      #<-- sorting according to length of the item name
+print(f' \t\t\t resorted list = {example_list_01} = by len of name \n')
