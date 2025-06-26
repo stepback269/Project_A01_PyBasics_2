@@ -1,6 +1,6 @@
 '''
-Last modified 6/18a/2025
-Purpose: Reviewing my earlier learning re Python string methods
+Last modified 6/26a/2025
+Purpose: Reviewing my earlier learning re Python string methods --adding new material
 See also: W3 School string methods on the web
 There are 68 notes in here rather than just 47 because it includes string "tricks"
 '''
@@ -191,12 +191,12 @@ n+=2; print(n, ':', sample_4.title())
 ##########  EXTRA SECTION: USEFUL f-string METHODS #####
 # from https://www.youtube.com/watch?v=EoNOWVYKyo0
 
-#: 50: Inserting commas or underscores into large INTEGERS
+#: 50: Inserting commas or UNDERSCORES into large INTEGERS
 biggie: int = 1000000000    #<-- lots of zeroes
 n=50; print(n, ':', f'{biggie:,}')  #inserts commas for every 3 zeroes
 print(n, ':', f'{biggie:_}')        #inserts underscores for every 3 zeroes, NO OTHER CHARs allowed
 
-#: 51: Use f-string to right-align strings
+#: 51: Use f-string to RIGHT-ALIGN strings
 short = 'Hi You'; short_2 = "Yes it's You"
 n+=1; print(n, ':', f'{short:>20}')     #<--- Total string length is 20 chars
 print(n, ':', f'{short_2:>20}')
@@ -205,10 +205,39 @@ print(n, ':', f'{short_2:^19}', '|')     #<--- CENTER-aligned plus '|" as end in
 print(n, ':', f'{short_2:_^19}', '|')    #<--- filler char inserted after colon :
 
 #: 52:  Date/time tricks (to be continued)
+from datetime import datetime
+now: datetime = datetime.now()          #<-- set this object (hinted at) to current time
+print(f'\n#: 52a: Date now is: {now: %m/%d/%y}')        #<-- format the object for month first (%m), then day, then year
+print(f'#: 52b: Date for Obsidian? is: {now: %Y~m%m~%d %A:} Title xxtop1')        #<-- format the output for Obsidian
+# ^^^ note capital Y in above for full year, capital A for full day of week
+# ^^^ also see more codes listed at: https://www.w3schools.com/python/python_datetime.asp
+
+#: 53:  ROUNDING
+long_num: float = 12345.67890123
+print(f'\n#: 53a: long number originally is {long_num}')
+print(f'   But when rounded is {long_num:.2f}')
+print(f'   When also comma~d b4 the dot is {long_num:,.3f}  <--note rounding at 3rd decimal place')
+
+#: 54:  Debugging with f' strings  (see as alternative the icecream module)
+a = 5; b = 6; c = 2
+print(f'\n#: 54: {a**c + b**c = } <--equal sign inside curly brackets causes repeat of formula')
+print(f'   a = 5; b = 6; c = 2    ^^^ use above for debugging')
+# ^^^ note also the space after the equal sign
+
+#: 55:  Improve readability of Big Numbers
+biggie = 1_620_000_000
+print(f'\n#: 55: Original biggie is {biggie}')
+print(f'   In e format  biggie is {biggie:e}')
+print(f'   In dot 2 plus e format  biggie is {biggie:.2e}')
+
+# ^^^ above is more f strings at https://www.youtube.com/watch?v=aa39jL7wdJs
+breakpoint()
+
+
 
 # (new) Indently ALL f-string tricks from https://www.youtube.com/watch?v=9saytqA0J9A
 
-#60 The basic f-string usage = avoid plus signs and open/close quotes
+#: 60 The basic f-string usage = avoid plus signs and open/close quotes
 n=60; print('\n\n\nBasic combining of strings calls for "str1" + "str2"')
 my_name: str = 'Gideon'; my_age: int = 73 #<-- next want to combine string plus integer
 print('NAME =' + 'Gideon ' + 'AGE = ' + str(my_age))
