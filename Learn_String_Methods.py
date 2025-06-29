@@ -1,5 +1,5 @@
 '''
-Last modified 6/26a/2025
+Last modified 6/28a/2025  --current edit spot = "#: 80" <-- select and hit Ctrl + f, then <Enter>
 Purpose: Reviewing my earlier learning re Python string methods --adding new material
 See also: W3 School string methods on the web
 There are 68 notes in here rather than just 47 because it includes string "tricks"
@@ -230,10 +230,49 @@ print(f'\n#: 55: Original biggie is {biggie}')
 print(f'   In e format  biggie is {biggie:e}')
 print(f'   In dot 2 plus e format  biggie is {biggie:.2e}')
 
-# ^^^ above is more f strings at https://www.youtube.com/watch?v=aa39jL7wdJs
-breakpoint()
 
+#:56    More datetime & rounding tricks --> inserting a variable in the datetime format spec
+from datetime import datetime
+now: datetime = datetime.now()
+date_spec: str= '%m/%d/%Y'
+print(f'\n#: 56a: Original fixed format shows: {now:%m/%d/%Y}')
+print(f'   using the varaible string instead via nested curlies: {now:{date_spec}}')
 
+biggie2: float = 10000000.1236560789
+spec2: str = ',.3f'
+print(f'\n#: 56b: Original biggie float is {biggie2}')
+print(f'   using the varaible string instead via nested curlies: {biggie2:{spec2}}')
+
+#: 57   More tricks: Escaping back slash using the "RAW" or FRench specifier
+custom_folder: str = 'Indently_tricks'
+base_folder_path: str = fr'\Users\federico\Documents\fixed_folder'
+varaible_folder_path: str = fr'\Users\federico\Documents\{custom_folder}'
+print(f'\n#: 57: Original raw path is {base_folder_path}')
+print(f'   using the varaible string instead via inserted curly: {varaible_folder_path} \n')
+
+#: 58   More tricks (at 5:25):  pretty print for ugly floats
+simple1: float = 0.1
+simple2: float = 0.2
+print(f'\n#: 58: Non pretty sum of simple floats is {simple1 + simple2 = }')
+print(f'   using the format spec we instead can make it this: {simple1 + simple2 = :.2f} \n')
+
+#: 59a   More tricks (at 6:55): syntax specifier for variable's name ( exclamation s means print the object name as
+# string bit without the surround quote marks)
+user_name: str = 'Bob'
+print(f'\n{user_name = }')
+print(f'#: 59a: {user_name = !s} <--shows evaluated expression plus its value w/o quotes\n')   #<-- here we have the equal sign after the expression to be evaluaed
+
+#: 59b   More tricks (at 7:40):  Last trick  TO BE CONTINUED ...
+from datetime import datetime, date
+banana: str = '👍🤠🖖'     #<-- got these from https://copychar.cc/emoji/
+user_name: str = 'Bob'
+today: date = datetime.now().date()
+print(f'\n#: 59b:')
+print(f'[{today!s}] {user_name!s} says: {banana!s}   <-- exclamtion !s in each curly')
+print(f'[{today!r}] {user_name!r} says: {banana!r}   <-- exclamtion !r in each curly')
+print(f'[{today!a}] {user_name!a} says: {banana!a}   <-- exclamtion !a in each curly, last are the Uni-codes \n')
+
+#: ^^^ above is more f strings at https://www.youtube.com/watch?v=aa39jL7wdJs
 
 # (new) Indently ALL f-string tricks from https://www.youtube.com/watch?v=9saytqA0J9A
 
@@ -318,3 +357,5 @@ my_sample_text_2: Special_text = Special_text('THIS STARTED OFF AS ALL UPPER CAS
 n+=1; print('\n', n, ':', f'{my_sample_text_1:up}')
 print('\t', f'{my_sample_text_2:low}')
 print('\t', f'{my_sample_text_2:len} <--this is the length count')
+
+#: 80:  Mosh's string tricks at https://www.youtube.com/watch?v=9OeznAkyQz4
