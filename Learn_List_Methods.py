@@ -1,31 +1,157 @@
-# Date: 6/28c/2025  version 002  <-- latest edit search for "#: 53:"
+# Date: 7/01a/2025  version 004  <-- latest edit search for: "#: 03:"  or for "#: 53:"
 # This Python file will be similar to the earlier Learn_String_Methods and also base don Indently's YouTube video
 # (1) located at: https://www.youtube.com/watch?v=0yySumZTxJ0&t=1s
+
 # There are only 11 list methods according to Indently --NOT counting Dunder methods
 # 38:APPEND(), 39:CLEAR(),   40:COPY(), 41:COUNT(),  42:EXTEND()
 # 43:INDEX(),  44:INSERT(),  45:POP(),  46:REMOVE(), 47:REVERSE(), 48:SORT()
+
+# more ... code snippet exercises:
+# 01:CHOICE(), 02:SHUFFLE(), 03:RANDOMrange(), more ...
 
 # Aside from Indently, there are other worthwhile videos to cover here including:
 # (2) Mosh --- How to Use Lists in Python: https://www.youtube.com/watch?v=9OeznAkyQz4
 # (3) Bro Code -- Python lists, sets, and tuples explained: https://www.youtube.com/watch?v=gOMW_n2-2Mw
 
+'''
+FLOW CONTROL CHANGES:
+In order to skip some coding exercises, we introduce the notion of a skip-this controler list
+skip_diz_func_A = a first  list of 30 integers, each for controlling activation of tutorials #01 to #29
+skip_diz_func_B = a second list of 30 integers, each for controlling activation of tutorials #30 to #59
+skip_diz_func_C = a third  list of 30 integers, each for controlling activation of tutorials #60 to #99
+skip_diz_template = range(0,31) = use this as a template for identifying the index of the 30 int lists
+'''
+def gen_index_templ4(numb_indices):      #<--func prints out a template of numb number of indices plus one
+    skip_diz_template_create = range(numb_indices + 1)
+    skip_diz_template = list(skip_diz_template_create)
+    for i in skip_diz_template: print(format(i ,"02d"), end = ' ')
+    print(f'\nTemplate printed out above for {numb_indices} plus one indices\n')
+
+gen_index_templ4(6)
+gen_index_templ4(10)
+
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+# see https://www.geeksforgeeks.org/python/range-to-a-list-in-python/
+
+def gen_preFilled_list4(numb_indices, filler = 0):    #<--func prints out a list of numb number of indices plus one
+    skip_diz_template_A = [filler] * (numb_indices +1)    #<-- and returns the gen'd list
+    for i in skip_diz_template_A: print(format(i ,"02d"), end = ' ')
+    print(f'\nPre-filled list printed out above for {numb_indices} plus one indices\n')
+    return skip_diz_template_A
+skip_diz_list = gen_preFilled_list4(6, 0)
+skip_diz_list = gen_preFilled_list4(10, 1)
+print(skip_diz_list)
+numb_indices = 10   #<--this value is internal to the last run of function above
+print(f'Pre-filled list printed out above for {numb_indices} plus one indices\n')
+
+# breakpoint()
+# 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+# 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+# problem1: first 10 positions are 1 digit and then after it is two digits
+# see https://stackoverflow.com/questions/29000613/add-leading-zeros-to-a-list-of-numbers-in-python
+
+# breakpoint()
+# problem2: how to align items on two rows of print outs (now that we're doing row1 + row2 for die dots)
+# see https://labex.io/tutorials/python-how-to-align-output-in-python-printing-418802
+
+print('WELCOME TO LEARN LIST METHODS')
+print('-' * 20)
+print(f'First tutorial is number #: 01: CHOICE()')
+method_name = 'CHOICE()'
+method_ID_numb = 1
+
+#: 01:
 # Indently's code for "gluing"-in a random choice function ( https://www.youtube.com/watch?v=H6Zn8MdcBwg )
 from random import choice       # ^^^^ above URL explains advantages of the Python language
-dice_faces: int = range(1,7)    #<-- generates a list of integers 1-6 (default start of range is 0)
-go_again = 'y'                  # ^^^ forinfo re random.choice, see:
+# dice_faces: int = range(1,7)    #<-- generates a list of integers 1-6 (default start of range is 0)
+# go_again = 'y'                  # ^^^ forinfo re random.choice, see:
 #                               # https://www.google.com/search?q=python+random+choice&sourceid=chrome&ie=UTF-8
-face_imgs = ['🎲', '⛹️‍♀️', '🧑🏻‍🤝‍🧑🏻', '👪', '👨‍👨‍👧‍👦', '👪👨‍👦', '👪👪']  #<-- icons were obtained from below URL:
-                        # ^^^^ https://copychar.cc
+# face_imgs = ['🎲', '⛹️‍♀️', '🧑🏻‍🤝‍🧑🏻', '👪', '👨‍👨‍👧‍👦', '👪👨‍👦', '👪👪']  #<-- icons were obtained from below URL:
+# face_imgs = ['🀣', '🀙', '🀚🀚', '🀛🀛🀛', '🀜🀜🀜 🀜', '🀝🀝🀝 🀝🀝', '🀞🀞🀞 🀞🀞🀞']
+#face_imgs = ['🙉', '💛', '❤️❤️', '💚💚💚', '💙💙 💙💙', '💕💕❣️💕💕', '❣️❣️❣️ ❣️❣️❣️']
+# ^^^^ https://copychar.cc
+#   00 01 02 03 04 05 06
+#   Template printed out above for 6 plus one indices
+face_imgs_row1 = ['🤬', '🧐', '🤓🤓', '😲😲', '🤩🤩', '😋   🤪',   '🤠🤠🤠' ]
+face_imgs_row2 = ['☠️', ' ',   '  ',   '😲',    '🤩🤩', '😋😛🤪',   '🤠🤠🤠' ]
+print('\n\n', '-' * 20)
+
+dice_faces: int = range(1,7)    #<-- generates a list of integers 1-6 (default start of range is 0)
+go_again = 'y'
 while go_again == 'y':
     roll_1 = choice(dice_faces)
     roll_2 = choice(dice_faces)
     print(f'\n#:00; example of random choice')
-    print(f' 1st die roll gives you a {roll_1}   {face_imgs[roll_1]}')
-    print(f' 2nd die roll gives you a {roll_2}   {face_imgs[roll_2]}')
-    print(f' the SUM of the two rolls is {roll_1 + roll_2} \n')
-    go_again = input('Try again? Enter y/n here__')
+    print(f' 1st die roll gives you a \t{roll_1}\t{face_imgs_row1[roll_1]}')
+    print(f' \t\t\t\t\t\t\t\t{face_imgs_row2[roll_1]}\n')
+    print(f' 2nd die roll gives you a \t{roll_2}\t{face_imgs_row1[roll_2]}')
+    print(f' \t\t\t\t\t\t\t\t{face_imgs_row2[roll_2]}\n')
+    print(f' The SUM of the two rolls is \t{roll_1 + roll_2} \n')
+    go_again = input('Try again? Enter y or other here__')
 
-# breakpoint()
+breakpoint()
+#: 02a ANSI COLOR escape codes
+esc = '\033['
+wht_text = esc + '37m'; yel_text = esc + '33m'; red_text = esc + '31m'; grn_text = esc + '32m'
+blu_text = esc + '34m'; cyan_text = esc + '36m'; magen_text = esc + '35m'
+'''
+from: Google prompt: "python escape codes for coloring output"
+Basic Structure:
+The core of an ANSI escape sequence for styling is \033[ or \x1b[, followed by one or more numerical codes separated by semicolons, and ending with m.
+Common Codes:
+Reset:
+\033[0m resets all applied styles (color, background, effects) to default.
+Background Colors:
+Red Background: \033[41m  Green Background: \033[42m (Similar patterns for other colors, 
+e.g., 40m for black background, 47m for white background, and 100-106m for bright background colors)
+Text Effects:
+Bold: \033[1m  Dim: \033[2m  Underline: \033[4m
+Blink: \033[5m (Note: blinking might not be supported or desirable in all terminals)
+'''
+
+#: 02: SHUFFLE()    = Randomly shuffle a list
+from random import shuffle      #<-- from Indently's learn RANDOM methods found at:
+                    # https://www.youtube.com/watch?v=Ffeb5ibQDP0
+list_example_01 = ['Adam', 'Brad', 'Charlie', 'David', 'Ernie']
+list_example_01a = list_example_01.copy()
+shuffle(list_example_01)
+
+n=2; method_name = 'shuffle()'
+print('\n')
+print(f'#0{n}  method = {method_name}  shuffled output= \t{list_example_01}')
+print(f' \t\t\t\t original list was = \t\t{list_example_01a}\n')
+print(f'{yel_text}FOOD for THOUGHT: What applications can SHUFFLE() be used for?{wht_text}')
+print(f'(1): Shuffle 52 playing cards e.g. Poker, then pick a random index in range of 0 to 51-5, then pick 5 cards')
+print(f'(2): Shuffle a list of N nouns and also M verbs, then generate random sentences for new ideas')
+halt_02 = input(f'Do you have any more application ideas for {red_text}SHUFFLE(){wht_text} ??__\n')
+
+
+#: 03: RANDOMrange()    = more random functions
+n += 1; method_name = 'random()'
+from random import random, randint, randrange      #<-- from Indently's learn RANDOM methods
+rand_02one: float = random()
+
+print('\n')
+print(f'#0{n}a  method = {method_name}  generated output= \t{rand_02one} \n')
+print(f'{yel_text}FOOD for THOUGHT: What applications can RANDOM() be used for?{wht_text}')
+print(f'(1): Pick a random member of a list of N words (e.g., nouns, verbs, adverbs, adjectives, more ...?')
+print(f'(2): Pick a random member of a list of code snippets, then exec the picked snippet= genetic code create')
+halt_02 = input(f'Do you have any more application ideas for {red_text}RANDOM(){wht_text} ??__\n')
+
+n += 0; method_name = 'randint(arg1, arg2)'       #<-- creates a list in range of arg1 to arg2 inclusive
+rand_a2b: list[int] = randint(10, 20)
+print(f'#0{n}b  method = {method_name}  generated list= \t{rand_a2b}')
+
+rand_a2b: list[int] = [randint(10, 20) for _ in range(5)]
+print(f' \t\t\t\t expanded list is = \t\t{rand_a2b}\n')
+print(f'{yel_text}FOOD for THOUGHT: What applications can RANDINT() be used for?{wht_text}')
+print(f'(1): Pick a random member of a list of N indexes (e.g., point to nouns, verbs, adverbs, adjectives, more ...?')
+print(f'(2): Pick a random member of a list of N identifiers of code snippets, then exec the picked snippet= genetic code create')
+halt_02b = input(f'Do you have any more application ideas for {red_text}RANDOMINT(){wht_text} ??__\n')
+
+
+breakpoint()        #<-- halted at 2:44 of https://www.youtube.com/watch?v=Ffeb5ibQDP0
 
 # Indently's code for printing out all the methods is as follows
 def gen_list_of_methods():
