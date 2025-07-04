@@ -1,4 +1,5 @@
-# Date: 7/02b/2025  version 004a  <-- latest edit search for: "#: 03:"  or for "#: 53:"
+# Date: 7/03/2025  version 004d  <-- latest edit search for: "#: 03:"  or for "#: 53:"
+
 # (1) This Python file will be similar to the earlier Learn_String_Methods and also base don Indently's YouTube video
 #   (1a) located at: https://www.youtube.com/watch?v=0yySumZTxJ0&t=1s
 # (2) Emphasis is diverted here away from the target of the "learning" (e.g. List methods) and toward the
@@ -6,11 +7,17 @@
 #   (2a) According to a number of educators, stopping to ask and answer QUESTIONS about what you are studying
 #       increases the effectiveness of the learning process significantly. (Because it forces your brain to
 #       actively generate its own output rather than passively intaking information).
-#   (2b) See "Smartest People Read Books Like This" by Python Programmer here: https://www.youtube.com/watch?v=mOJu1I57Ajc
+#   (2b) See "Smartest People Read Books bLike This" by Python Programmer here: https://www.youtube.com/watch?v=mOJu1I57Ajc
 #   (2c) See "Semantic Encoding" here: https://www.google.com/search?q=smantic+encoding&sourceid=chrome&ie=UTF-8
 #   (2d) See "Prompt Engineering" here: https://www.youtube.com/watch?v=_ZvnD73m40o
 #   (2e) See "Learning resources are everywhere" here: https://gilesknowledge.substack.com/p/learning-resources-are-everywhere
-# (3) In the coding exercises below we will include a FOOD FOR THOUGHT questionire to improve the "LEARNING" aspects
+
+# (3) I can't stay pure here because I will have to dip into Dictionary methods in order to pass a long set of
+# parameters into the halt4_ideas subroutine
+#   (3a) See Indently -- ALL 11 Dictionary Methods In Python EXPLAINED here: https://www.youtube.com/watch?v=u0yr9B3nH8c
+#   (3b) See Geeks-4-Geeks here: https://www.geeksforgeeks.org/python/python-dictionary-methods/
+
+# (4) In the coding exercises below we will include a FOOD FOR THOUGHT questionire to improve the "LEARNING" aspects
 
 # According to Indently, there are only 11 list methods --NOT counting Dunder methods
 # 38:APPEND(), 39:CLEAR(),   40:COPY(), 41:COUNT(),  42:EXTEND()
@@ -20,8 +27,8 @@
 # 01:CHOICE(), 02:SHUFFLE(), 03:RANDOMrange(), more ...
 
 # Aside from Indently, there are other worthwhile videos to cover here including:
-# (4) Mosh --- How to Use Lists in Python: https://www.youtube.com/watch?v=9OeznAkyQz4
-# (5) Bro Code -- Python lists, sets, and tuples explained: https://www.youtube.com/watch?v=gOMW_n2-2Mw
+# (5) Mosh --- How to Use Lists in Python: https://www.youtube.com/watch?v=9OeznAkyQz4
+# (6) Bro Code -- Python lists, sets, and tuples explained: https://www.youtube.com/watch?v=gOMW_n2-2Mw
 
 '''
 FLOW CONTROL CHANGES:
@@ -30,21 +37,45 @@ skip_diz_func_A = a first  list of 30 integers, each for controlling activation 
 skip_diz_func_B = a second list of 30 integers, each for controlling activation of tutorials #30 to #59
 skip_diz_func_C = a third  list of 30 integers, each for controlling activation of tutorials #60 to #99
 skip_diz_template = range(0,31) = use this as a template for identifying the index of the 30 int lists
+
+Pre-packaged Further exercises
+The halt4_ideas subroutine will input as a parameter, a Dictionary that has many parameters
+Among the parameters will be, string sequences that propose complex prompts for AI models and other string sequences
+that suggest other practical uses for the under-study string methos
 '''
+import pyperclip            #--- enable use of clipboard
+import colorama             #--- contains Fore escape codes
+colorama.init()
+from colorama import Fore, Back, Style      #-- see G4G here: https://www.geeksforgeeks.org/python/introduction-to-python-colorama/
+
+print(Fore.RED + 'This Colorama text is red')
+print(Back.YELLOW + Fore.CYAN + Style.BRIGHT + 'This Colorama text has a green background'+ Back.BLUE)
+print(Style.BRIGHT + Fore.BLACK + 'This Colorama text is bright' + Back.BLACK)
+print(Style.RESET_ALL + 'Back to normal text')
+
+#Foreground Colors: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE
+#BACKGROUND: same set of colors
+
+# breakpoint()
+
 def gen_index_templ4(numb_indices):      #--func prints out a template of numb number of indices plus one
     skip_diz_template_create = range(numb_indices + 1)
-    skip_diz_template = list(skip_diz_template_create)
-    for i in skip_diz_template: print(format(i ,"02d"), end = ' ')
+    skip_diz_template = list(skip_diz_template_create)          #--- convert the sequence of integers into a list
+    for i in skip_diz_template: print(format(i ,"02d"), end = ' ')  #-- apply the format() function one int at a time
     print(f'\nTemplate printed out above for {numb_indices} plus one indices\n')
 
-gen_index_templ4(6)
-gen_index_templ4(10)
+gen_index_templ4(6)     #-- create an indices template of 2 digits each for indices 0 to 6
 
+gen_index_templ4(10)    #-- create an indices template of 2 digits each for indices 0 to 10
+
+# If we had not used the format() function, the list of indice would be per the below:
 # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 # see https://www.geeksforgeeks.org/python/range-to-a-list-in-python/
+# problem1: first 10 positions above are 1 digit and then after it is two digits
+# see https://stackoverflow.com/questions/29000613/add-leading-zeros-to-a-list-of-numbers-in-python
 
 def gen_preFilled_list4(numb_indices, filler = 0):    #--func prints out a list of numb number of indices plus one
-    skip_diz_template_A = [filler] * (numb_indices +1)    #-- and returns the gen'd list
+    skip_diz_template_A = [filler] * (numb_indices +1)    #-- and returns the gen'd list filled with the filler
     for i in skip_diz_template_A: print(format(i ,"02d"), end = ' ')
     print(f'\nPre-filled list printed out above for {numb_indices} plus one indices\n')
     return skip_diz_template_A
@@ -54,81 +85,92 @@ skip_diz_list_b = gen_preFilled_list4(10, 1)
 print(skip_diz_list_a)
 print(skip_diz_list_b)
 
-numb_indices = 10   #--this value is internal to the last run of function above
+numb_indices = 10   #--this value is otherwise only internal to the last run of function above
 print(f'Pre-filled strings list printed out above for {numb_indices} plus one indices\n')
-
-# problem1: first 10 positions are 1 digit and then after it is two digits
-# see https://stackoverflow.com/questions/29000613/add-leading-zeros-to-a-list-of-numbers-in-python
 
 # problem2: how to align items on two rows of print outs (now that we're doing row1 + row2 for die dots)
 # see https://labex.io/tutorials/python-how-to-align-output-in-python-printing-418802
 
-def halt4_food(method_ID_numb = 0, method_name = 'List method', verb = 'generate', output = 'modified_list',
-               original = 'original_list_example'):
-    esc = '\033['; wht_text = esc + '37m'; yel_text = esc + '33m'; red_text = esc + '31m'
-    print(f'\n#0{method_ID_numb}: Output of {method_name} is this {verb}d \t{output}')
-    print(f' \t\t\t\t original list was = \t\t{original}\n')
-    print(f'{yel_text}FOOD FOR THOUGHT: What applications can {method_name} be used for?{wht_text}')
-    print(f'(1): {method_name} can {verb} a ____ list to produce ____ in context of ____')
-    print(f'(2): {method_name} can {verb} a ____ list to produce ____ in context of ____')
-    halt_02 = input(f'Do you have any more application ideas for {red_text}{method_name}{wht_text} ??__\n')
+# Note: Upgrade below method to input a Dictionary full of parametrs including prompts for AI models
+example_list_A = ['🤬', '🧐', '🤓🤓', '😲😲', '🤩🤩', '😋   🤪',   '🤠🤠🤠' ]
+example_list_B = ['🙉', '💛', '❤️❤️', '💚💚💚', '💙💙 💙💙', '💕💕❣️💕💕', '❣️❣️❣️ ❣️❣️❣️']
+result_list1 = ['🀣', '🀙', '🀚🀚', '🀛🀛🀛', '🀜🀜🀜 🀜', '🀝🀝🀝 🀝🀝', '🀞🀞🀞 🀞🀞🀞']
+result_list2 = ['🎲', '⛹️‍♀️', '🧑🏻‍🤝‍🧑🏻', '👪', '👨‍👨‍👧‍👦', '👪👨‍👦', '👪👪']
+
+halt_params: dict = {'tute_ID':'01a', 'tute_name':'Indently_01a', 'tute_actions':'Doing this and that',
+                          'tute_input_var1':example_list_A, 'tute_input_var2':example_list_B,
+                          'tute_output1':result_list1, 'tute_output2':result_list2,
+                          'tute_suggest1':f'Try choosing elements of an interagotory (Why/Where/When/)',
+                          'tute_suggest2':f'Try applying actions in a different context'}
+
+def halt4_ideas(halt_params):
+    p = halt_params         #-- shallow assign creates a shorter var name for internal use in this func
+    original = p['tute_input_var1']     #-- get the original list example
+    result = p['tute_output1']
+    esc = '\033['; wht_text = esc + '37m'; yel_text = esc + '33m'; red_text = esc + '31m'  #-- import colorama
+    print(f'\n#0{p['tute_ID']}: Output of {p['tute_name']} is {p['tute_actions']} to produce \t{p['tute_output1']}')
+    print(f' \t\t\t\t original input was = \t\t{original}\n')
+    print(f'{yel_text}FOOD FOR THOUGHT: What other applications can {p['tute_name']} be used for?{wht_text}')
+    print(f'(1): {p['tute_name']} can {p['tute_actions']} on a ____ list to produce ____ in context of ____')
+    print(f'(2): {p['tute_name']} can {p['tute_actions']} on a ____ list to produce ____ in context of ____')
+    print(f'(3):  {p['tute_suggest1']}')
+    halt_02 = input(f'Do you have any more application ideas for {red_text}{p['tute_name']}{wht_text} ??__\n')
+
+halt4_ideas(halt_params)
 
 print('WELCOME TO LEARN LIST METHODS')
 print('-' * 20)
-print(f'First tutorial is number #: 01: CHOICE()')
+print(f'First tutorial should be number #: 01: CHOICE() unless the skip_diz list says otherwise')
 
-method_name = 'CHOICE()'
-method_ID_numb = 1
-list_example_01 = ['Adam', 'Brad', 'Charlie', 'David', 'Ernie']
-list_example_01_mod = ['Brad', 'Charlie', 'David']
-halt4_food(method_ID_numb, method_name, 'Random choosing',list_example_01_mod,
-               list_example_01)
+
+# method_name = 'CHOICE()'
+# method_ID_numb = 1
+# list_example_01 = ['Adam', 'Brad', 'Charlie', 'David', 'Ernie']     #--- these are phony list examples to test halt
+# list_example_01_mod = ['Brad', 'Charlie', 'David']
+# halt4_ideas(halt_params)
 # breakpoint()
 
-
-#: 01:
-# Indently's code for "gluing"-in a random choice function ( https://www.youtube.com/watch?v=H6Zn8MdcBwg )
+#: 01:          #-------------------- SEARCH WILL JUMP HERE (if Ctrl + f is set for "01:" )
+# See Indently's code for "gluing"-in a random choice function ( https://www.youtube.com/watch?v=H6Zn8MdcBwg )
 method_name = 'CHOICE()'; method_ID_numb = 1; verb= 'Choosing dice roll outcome'
 
 from random import choice       # ^^^^ above Indently URL explains advantages of the Python language
 # dice_faces: int = range(1,7)    #-- generates a list of integers 1-6 (default start of range is 0)
-# go_again = 'y'                  # ^^^ forinfo re random.choice, see:
+# go_again = 'y'                  # ^^^ for info re random.choice, see:
 #                               # https://www.google.com/search?q=python+random+choice&sourceid=chrome&ie=UTF-8
 # face_imgs = ['🎲', '⛹️‍♀️', '🧑🏻‍🤝‍🧑🏻', '👪', '👨‍👨‍👧‍👦', '👪👨‍👦', '👪👪']  #<-- icons were obtained from below URL:
 # face_imgs = ['🀣', '🀙', '🀚🀚', '🀛🀛🀛', '🀜🀜🀜 🀜', '🀝🀝🀝 🀝🀝', '🀞🀞🀞 🀞🀞🀞']
 #face_imgs = ['🙉', '💛', '❤️❤️', '💚💚💚', '💙💙 💙💙', '💕💕❣️💕💕', '❣️❣️❣️ ❣️❣️❣️']
 # ^^^^ https://copychar.cc
-#   00 01 02 03 04 05 06
-#   Template printed out above for 6 plus one indices
 
-def choice_of_die_outcomes(method_ID_numb, method_name, verb, skip_diz_list_a):
+def choice_of_die_outcomes(method_ID_numb, method_name, verb, skip_diz_list_a):     #-- last arg is a skip control
     if skip_diz_list_a[method_ID_numb] == 1:
         print(f'method number {method_ID_numb} has been skipped\n')
-        return None     #--skip this tutorial if skip position is set to 1
+        return None                               #--skip this tutorial if skip position for tutorial 01 is set to 1
     face_imgs_row1 = ['🤬', '🧐', '🤓🤓', '😲😲', '🤩🤩', '😋   🤪',   '🤠🤠🤠' ]
     face_imgs_row2 = ['☠️', ' ',   '  ',   '😲',    '🤩🤩', '😋😛🤪',   '🤠🤠🤠' ]
     print('\n\n', '-' * 20)
 
-    dice_faces: int = range(1,7)    #-- generates a list of integers 1-6 (default start of range is 0)
+    dice_faces: int = range(1,7)    #-- gener
+    # ates a sequence (not list) of integers 1-6 (default start of range is 0)
     go_again = 'y'
     while go_again == 'y':
         roll_1 = choice(dice_faces)
         roll_2 = choice(dice_faces)
-        print(f'\n#:00; example of random choice')
+        print(f'\n#:00; example of random choice made with the CHOICE() function')
         print(f' 1st die roll gives you a \t{roll_1}\t{face_imgs_row1[roll_1]}')
         print(f' \t\t\t\t\t\t\t\t{face_imgs_row2[roll_1]}\n')
         print(f' 2nd die roll gives you a \t{roll_2}\t{face_imgs_row1[roll_2]}')
         print(f' \t\t\t\t\t\t\t\t{face_imgs_row2[roll_2]}\n')
         print(f' The SUM of the two rolls is \t{roll_1 + roll_2} \n')
         go_again = input('Try again? Enter y or other here__')
-    halt4_food(method_ID_numb, method_name, verb, face_imgs_row1,
-               face_imgs_row2)
+    halt4_ideas(halt_params)
 
-choice_of_die_outcomes(method_ID_numb, method_name, verb, skip_diz_list_a)
+choice_of_die_outcomes(method_ID_numb, method_name, verb, skip_diz_list_a)  #-- execute the above function here
 
 breakpoint()
 
-#: 02a ANSI COLOR escape codes
+#: 02a ANSI COLOR escape codes (Can these be imported from an existing module?)
 esc = '\033['
 wht_text = esc + '37m'; yel_text = esc + '33m'; red_text = esc + '31m'; grn_text = esc + '32m'
 blu_text = esc + '34m'; cyan_text = esc + '36m'; magen_text = esc + '35m'
@@ -148,7 +190,7 @@ Blink: \033[5m (Note: blinking might not be supported or desirable in all termin
 '''
 
 #: 02: SHUFFLE()    = Randomly shuffle a list
-from random import shuffle      #<-- from Indently's learn RANDOM methods found at:
+from random import shuffle      #-- from Indently's learn RANDOM methods found at:
                     # https://www.youtube.com/watch?v=Ffeb5ibQDP0
 list_example_01 = ['Adam', 'Brad', 'Charlie', 'David', 'Ernie']
 list_example_01a = list_example_01.copy()
@@ -188,7 +230,7 @@ print(f'(2): Pick a random member of a list of N identifiers of code snippets, t
 halt_02b = input(f'Do you have any more application ideas for {red_text}RANDOMINT(){wht_text} ??__\n')
 
 
-breakpoint()        #<-- halted at 2:44 of https://www.youtube.com/watch?v=Ffeb5ibQDP0
+breakpoint()        #-- halted at 2:44 of https://www.youtube.com/watch?v=Ffeb5ibQDP0
 
 # Indently's code for printing out all the methods is as follows
 def gen_list_of_methods():
