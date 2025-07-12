@@ -1,4 +1,4 @@
-# ver 7/05a/2025 Bro Code tutorial on how to create, write to, append to, txt file (also json and csv)
+# ver 7/12a/2025 Bro Code tutorial on how to create, write to, append to, txt file (also json and csv)
 
 txt_2b_saved = 'This sample text to be written to a newly created file'
 file_w_path = 'Bro_test_file.txt'       #--Can be a relative path or absolute eg to Desktop
@@ -40,3 +40,25 @@ with open(file=file_w_path3, mode="w") as file:   #-- json extension
     print(f'\nThe test JSON file named "{file_w_path3}" has been created on the Desktop\n'
 
 # TO BE CONTINUED AT (10:42) in https://www.youtube.com/watch?v=1IYrmTTKOoI
+
+
+#from  Learn strings:
+    #: 52:  Date/time tricks (to be continued)
+from datetime import datetime
+
+now: datetime = datetime.now()  # <-- set this object (hinted at) to current time
+print(f'\n#: 52a: Date now is: {now: %m/%d/%y}')  # <-- format the object for month first (%m), then day, then year
+print(f'#: 52b: Date for Obsidian? is: {now: %Y~m%m~%d %A:} Title xxtop1')  # <-- format the output for Obsidian
+    # ^^^ note capital Y in above for full year, capital A for full day of week
+    # ^^^ also see more codes listed at: https://www.w3schools.com/python/python_datetime.asp
+
+file_base_path4 = 'C:/Users/gideon/Python_Projects_A0/Project_A01_PyBasics_2/.venv' # --absolute PATH to THE Venv folder
+Title = 'Test Run 01'
+file_w_ path4 = file_base_path4 + f'{now: %Y~m%m~d%d:} {Title} xxtop1'
+
+try:            #-- This "try BLOCK" is used to cope with exceptions like a FileExistsError
+    with open(file=file_w_path4, mode="w") as file:  # --Insted of "w" for write mode, can use "x" to create, or ...
+        file.write(f'{Title}' + f'{now: %Y~m%m~d%d:} for Obsidain Note \r\n')
+        file.write(f'This an attempt to append new lines to the file in the VENV folder\n')
+except FileExistsError:
+    print(f'That file already exists on the deskto as {file_w_path4}')

@@ -1,4 +1,4 @@
-# Date: 7/03/2025  version 004d  <-- latest edit search for: "#: 03:"  or for "#: 53:"
+# Date: 7/11/2025  version 004d  <-- latest edit search for: "#: 03:"  or for "#: 53:"
 
 # (1) This Python file will be similar to the earlier Learn_String_Methods and also base don Indently's YouTube video
 #   (1a) located at: https://www.youtube.com/watch?v=0yySumZTxJ0&t=1s
@@ -102,6 +102,7 @@ halt_params: dict = {'tute_ID':'01a', 'tute_name':'Indently_01a', 'tute_actions'
                           'tute_output1':result_list1, 'tute_output2':result_list2,
                           'tute_suggest1':f'Try choosing elements of an interagotory (Why/Where/When/)',
                           'tute_suggest2':f'Try applying actions in a different context'}
+from datetime import datetime
 
 def halt4_ideas(halt_params):
     p = halt_params         #-- shallow assign creates a shorter var name for internal use in this func
@@ -114,8 +115,51 @@ def halt4_ideas(halt_params):
     print(f'(1): {p['tute_name']} can {p['tute_actions']} on a ____ list to produce ____ in context of ____')
     print(f'(2): {p['tute_name']} can {p['tute_actions']} on a ____ list to produce ____ in context of ____')
     print(f'(3):  {p['tute_suggest1']}')
-    halt_02 = input(f'Do you have any more application ideas for {red_text}{p['tute_name']}{wht_text} ??__\n')
+    halt_02 = input(f'Do you have any more application ideas for {red_text}{p['tute_name']}{wht_text} ??__\n'
+                    f'type xx to exit\n')
+    idea_numb = 1
+    now: datetime = datetime.now()  # <-- set this object (hinted at) to current time
+    file_base_path4 = 'C:/Users/gideon/Python_Projects_A0/Project_A01_PyBasics_2/.venv/'  # --absolute PATH to THE Venv folder
+    Title = f'Test Run for idea number {idea_numb}'
+    file_w_path4 = file_base_path4 + f'{now: %Y~m%m~d%d}.txt'
 
+    try:  # -- This "try BLOCK" is used to cope with exceptions like a FileExistsError
+        with open(file=file_w_path4, mode="wt") as file:  # --Insted of "w" for write mode, can use "x" to create, or ...
+            file.write(f'{Title}' + f'{now: %Y~m%m~d%d:} for Obsidain Note \r\n')
+            file.write(f'{halt_02}\n')  #<--- write idea 01
+    except FileExistsError:
+        print(f'That file already exists on the deskto as {file_w_path4}')
+
+
+
+    while halt_02 != 'xx':
+        idea_numb += 1
+        # from  Learn strings:
+        #: 52:  Date/time tricks (to be continued)
+        now: datetime = datetime.now()  # <-- set this object (hinted at) to current time
+        # print(f'\n#: 52a: Date now is: {now: %m/%d/%y}')  # <-- format the object for month first (%m), then day, then year
+        # print(f'#: 52b: Date for Obsidian? is: {now: %Y~m%m~%d %A:} Title xxtop1')  # <-- format the output for Obsidian
+        # ^^^ note capital Y in above for full year, capital A for full day of week
+        # ^^^ also see more codes listed at: https://www.w3schools.com/python/python_datetime.asp
+
+        file_base_path4 = 'C:/Users/gideon/Python_Projects_A0/Project_A01_PyBasics_2/.venv/'  # --absolute PATH to THE Venv folder
+        Title = f'Test Run for idea number {idea_numb}'
+        file_w_path4 = file_base_path4 + f'{now: %Y~m%m~d%d}.txt'
+
+        try:  # -- This "try BLOCK" is used to cope with exceptions like a FileExistsError
+            with open(file=file_w_path4, mode="a") as file:  # --Insted of "w" for write mode, "a" is appeand"
+                file.write(f'{Title}' + f'{now: %Y~m%m~d%d:} for Obsidain Note \r\n')
+                file.write(f'idea numb {idea_numb} = {halt_02}\n')
+        except FileExistsError:
+            print(f'That file already exists on the deskto as {file_w_path4}')
+        halt_02 = input(f'Do you have any more application ideas for {red_text}{p['tute_name']}{wht_text} ??__\n'
+                        f'type xx to exit\n')
+
+halt_params: dict = {'tute_ID':'01a', 'tute_name':'Indently_01a', 'tute_actions':'Doing this and that',
+                          'tute_input_var1':example_list_A, 'tute_input_var2':example_list_B,
+                          'tute_output1':result_list1, 'tute_output2':result_list2,
+                          'tute_suggest1':f'Try choosing elements of an interagotory (Why/Where/When/)',
+                          'tute_suggest2':f'Try applying actions in a different context'}
 halt4_ideas(halt_params)
 
 print('WELCOME TO LEARN LIST METHODS')

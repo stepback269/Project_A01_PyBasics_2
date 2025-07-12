@@ -1,0 +1,8 @@
+Test Run for idea number 1 2025~m07~d12: for Obsidain Note 
+Yes again line 01 try
+Test Run for idea number 2 2025~m07~d12: for Obsidain Note 
+idea numb 2 = Yes again line 01 try
+Test Run for idea number 3 2025~m07~d12: for Obsidain Note 
+idea numb 3 = line 02 test
+Test Run for idea number 4 2025~m07~d12: for Obsidain Note 
+idea numb 4 = line 03 test input
