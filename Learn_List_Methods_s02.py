@@ -1,4 +1,4 @@
-# Date: 7/23b/2025  version 007a  <-- stripped #2, new clrj() color generator substituted in with validity check
+# Date: 7/26b/2025  version 007a  <-- stripped #2, new clrj() color generator substituted in with validity check
 
 import inspect
 import sys
@@ -92,18 +92,63 @@ def cj(chars: str = 'HWb', d: dict = clr):     #-- COLORAMA color commands gener
     else:
         print(f'arguments error in cj function call')
         return None
+# COLOR and func call SHORTCUTS
+x0 = cj('HWb')  #c0 = 'HWb';       #-- color combo shortcuts ... this one for BRIGHT WHITE on Black background
+x = x0          # smarter return to B & W
+x1 = cj('Ncb')  #c1 = 'Ncb';       #-- Normal Cyan             ... it's short bc cj(cn) has no quote marks
+x2 = cj('Dcb')  # c2 = 'Dcb';       #-- Dim Cyan
+z = x2          # smarter return to B & Cyan
+x3 = cj('y')    #c3 = 'y';         #-- Yellow
+y = x3          # smarter return to Yellow
+x4 = cj('NYb')
 
 welcome_txt_01 = f'WELCOME TO LEARNING AND REVIEWING PYTHON LISTS'
-intro_01 = '(01)  Hit "c" or "SPACE" to continue to next learning frame'
-intro_01a = 'Hit "m" to open browser to show more information re this frame'
-display_id = '(00)'
+intro_01a = '(01)  <-- This is the current lesson frame number'
+intro_01b = 'We will be exercising various Python list methods here'
+intro_01c = 'Many other Python features are brought to light at the same time including but not limited to:'
+intro_01c0 = f'(a) Using the {x3}COLORAMA{x2} module to print different colors on the console'
+intro_01c1 = f'(b) Using {y}string alignment{z} (e.g., Str.center, spc:<10, more)'
+intro_01c2 = f'(c) Using functions to generate indented lists like this one'
+intro_01c3 = f'(d) Using the {y}Webster module{z} to open additional info in the web browser'
+intro_01c4 = f'(e) Using the {y}Keyboard module{z} to detect single keystroke inputs'
+intro_01c5 = f'(f) Linking to {y}my own "Back of Stage" blog{z} to provide more on-topic information'
+intro_01c6 = f'(g) Opening a {x}"More to Explore"{z} informational web page ---> {y}Look in your browser -->{z}'
+
+intro_01c_list = [intro_01c0, intro_01c1, intro_01c2, intro_01c3, intro_01c4, intro_01c5, intro_01c6 ]
+
+intro_01d = f'For this first frame (01) we additionally {x3}link to Back Stage web page explaining "aliases" -->{x2}'
+intro_01x = '(01)  Hit "c" or "SPACE" to continue to next learning frame'
+intro_01y = 'Hit "m" to open browser to show more information re this frame'
+
+spc = ' '
+display_id = '(00)'     #-- print initial welcome mat
 sl1(display_id)
 slm(welcome_txt_01)
 sl2()
-outp: str = cj('Hrb') + intro_01.center(90)
-print(outp)
-outp: str = cj('Hyb') + intro_01a.center(90)
-print(outp)
+
+outp_01a: str = cj('Ncb') + intro_01a.center(90); print(outp_01a)   #-- print exercise frame (01)
+outp_01b: str = cj('Ncb') + intro_01b.center(90); print(outp_01b)
+outp_01c: str = f"\n{x2}{intro_01c}"; print(outp_01c)        #-- x2 is alias for cj('Dcb')
+
+def outp_list(list_name = intro_01c_list, colors = 'Ncb', indent=10):
+    for item in list_name:
+        print(f'{cj(colors)}{spc:<10}{item}')       #-- note colon between spc and indent
+    #print(f'{x4}\nend of for loop hit <--a debug notification\n')
+    return
+
+outp_list()     #-- execute above func
+
+url_01 = "https://oldmanlearningsupport.blogspot.com/2025/07/back-stage-support-for-old-man-learns.html"
+webbrowser.open(url_01)
+
+url_02 = "https://steppingback269.blogspot.com/2025/07/code-beauty-trumps-that-of-display.html"
+webbrowser.open(url_02)
+print(intro_01d, '\n')
+
+outp_01x: str = cj('Hrb') + intro_01x.center(90); print(outp_01x)
+outp_01y: str = cj('Hyb') + intro_01y.center(90); print(outp_01y)
+
+
 
 #def test(callback):
 #    print(callback.name)
@@ -119,19 +164,20 @@ print(outp)
 
 wait_01 = True
 while wait_01 == True:
-    if keyboard.read_key() == "c":  # if the "c" key is pressed
+    keyrd = keyboard.read_key()     #-- do just one read opertion per while loop
+    if keyrd == "c":  # if the "c" key is pressed
         wait_01 == False; response='c'
         print('You Pressed the "c" key --this is a debug notification')
         break
-    elif keyboard.read_key() == "space":  # if the "space" key is pressed
+    elif keyrd == "space":  # if the "space" key is pressed
         wait_01 == False; response=' '
         print('You Pressed the "SPACE" key --this is a debug notification')
         break
-    elif keyboard.read_key() == "x":  # if the "x" key is pressed
+    elif keyrd == "x":  # if the "x" key is pressed
         wait_01 == False; response='x'
         print('You Pressed the "x" key --this is a debug notification')
         break
-    elif keyboard.read_key() == "m":  # if the "m" key is pressed
+    elif keyrd == "m":  # if the "m" key is pressed
         wait_01 == False; response='m'
         print('You Pressed the "m" key --this is a debug notification')
         break
@@ -143,7 +189,7 @@ if response == 'c' or response == ' ':
     print(cj("Y"), f'DEFINITION: A Python "list" is a mutable array of items each addressed by an index starting at i = 0',
       cj("OWb"))
 if response == 'm':
-   webbrowser.open("https://www.youtube.com/watch?v=JNdP_BpOAU8")
+   webbrowser.open("https://www.geeksforgeeks.org/python/string-alignment-in-python-f-string/")
    breakpoint()
 
 intro_02 = input(intro_01.center(90))
