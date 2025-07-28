@@ -1,4 +1,4 @@
-# Date: 7/26b/2025  version 007a  <-- stripped #2, new clrj() color generator substituted in with validity check
+# Date: 7/27b/2025  version 007a  <-- stripped #2, new clrj() color generator substituted in with validity check
 
 import inspect
 import sys
@@ -10,29 +10,32 @@ import colorama             #--- contains Fore escape codes
 colorama.init()
 from colorama import Fore, Back, Style      #-- see G4G here: https://www.geeksforgeeks.org/python/introduction-to-python-colorama/
 
-def sl3(filler="*", times=90):   #-- separation line w \n above and extra below
-    outp: str = cj('HWb') + filler * times
+W_ = 'HWb'; M_ = 'Hmb'; C_ = 'DCb'; R_ = 'HRb'; Y_ = 'HYb'  #-- Define aliases for global color combos to use inside funcs
+
+def sl3(filler="*", times=90):   #-- separation line w \n above and an extra one below
+    outp: str = cj(W_) + filler * times
     print('\n', outp, '\n')
     return None
+sl = sl3('🤪')   #-- https://copychar.cc
 
 def sl2(filler="*", times=90):   #-- bottom separation line w extra \n below
-    outp: str = cj('HWb') + filler * times
+    outp: str = cj(W_) + filler * times
     print(outp, '\n')
     return None
 
 def sl1(box_id ='(__)', filler="*", times=90):   #-- top separation line w \n above
-    outp: str = f"\n{cj('HWb')}{box_id}{filler * (times-4)}"
+    outp: str = f"\n{cj(W_)}{box_id}{filler * (times-4)}"
     print(outp)
     return None
 
 def sl0(filler="*", times=40):   #-- separation line w no CRLF
-    outp: str = cj('HWb') + filler * times
+    outp: str = cj(W_) + filler * times
     print(outp, end='')
     return None
 
 def slm(mssg="MID MESSAGE GOES HERE", filler="**", times=2):   #-- mid box messages
-    outp: str = f"{cj('HWb')}{filler}{cj('HMb')}{mssg.center(90-4)}{cj('HWb')}{filler}"
-    print(outp)
+    outpmid: str = f"{cj(W_)}{filler}{cj(M_)}{mssg.center(90-4)}{cj(W_)}{filler}"
+    print(outpmid)
     return None
 
 
@@ -52,7 +55,7 @@ def qif_inStr_OK(inStr, slices_list, allowed):
             return False
     return True
 
-def cj(chars: str = 'HWb', d: dict = clr):     #-- COLORAMA color commands generator using the clr dictionary
+def cj(chars: str = W_, d: dict = clr):     #-- COLORAMA color commands generator using the clr dictionary
     numb = len(chars)
     allowed_4_Fore = 'brgyumcwoBRGYUMCW'
     allowed_4_Style = 'DNHO'
@@ -92,15 +95,14 @@ def cj(chars: str = 'HWb', d: dict = clr):     #-- COLORAMA color commands gener
     else:
         print(f'arguments error in cj function call')
         return None
-# COLOR and func call SHORTCUTS
-x0 = cj('HWb')  #c0 = 'HWb';       #-- color combo shortcuts ... this one for BRIGHT WHITE on Black background
-x = x0          # smarter return to B & W
-x1 = cj('Ncb')  #c1 = 'Ncb';       #-- Normal Cyan             ... it's short bc cj(cn) has no quote marks
-x2 = cj('Dcb')  # c2 = 'Dcb';       #-- Dim Cyan
-z = x2          # smarter return to B & Cyan
-x3 = cj('y')    #c3 = 'y';         #-- Yellow
-y = x3          # smarter return to Yellow
-x4 = cj('NYb')
+
+# COLOR and func call ALIASES
+x0 = w = cj(W_)  #c0 = 'HWb';  #-- color combo shortcuts ... this one for BRIGHT WHITE on Black background
+x1 = x = cj('Ncb')  #c1 = 'Ncb';       #-- Normal Cyan   ... it's short since cj(cn) has no quote marks
+x2 = z = cj('Dcb')  # c2 = 'Dcb';   #-- Dim Cyan
+x3 = y = cj(Y_)     #c3 = 'y';      #-- Yellow
+x4 = cj('Nyb')
+# Colors reminder {w}=White/b, {x}=Cyan/b, {z}=dim cyan, {y}=Yellow, {cj('HBw')}= Hight Black/w
 
 welcome_txt_01 = f'WELCOME TO LEARNING AND REVIEWING PYTHON LISTS'
 intro_01a = '(01)  <-- This is the current lesson frame number'
@@ -116,19 +118,18 @@ intro_01c6 = f'(g) Opening a {x}"More to Explore"{z} informational web page --->
 
 intro_01c_list = [intro_01c0, intro_01c1, intro_01c2, intro_01c3, intro_01c4, intro_01c5, intro_01c6 ]
 
-intro_01d = f'For this first frame (01) we additionally {x3}link to Back Stage web page explaining "aliases" -->{x2}'
-intro_01x = '(01)  Hit "c" or "SPACE" to continue to next learning frame'
-intro_01y = 'Hit "m" to open browser to show more information re this frame'
+intro_01d = f'For this first frame (01) we additionally {y}link to Back Stage web page explaining "aliases" -->{z}'
+
 
 spc = ' '
 display_id = '(00)'     #-- print initial welcome mat
 sl1(display_id)
-slm(welcome_txt_01)
+slm(welcome_txt_01)     #-- middle line uses this text message
 sl2()
 
-outp_01a: str = cj('Ncb') + intro_01a.center(90); print(outp_01a)   #-- print exercise frame (01)
-outp_01b: str = cj('Ncb') + intro_01b.center(90); print(outp_01b)
-outp_01c: str = f"\n{x2}{intro_01c}"; print(outp_01c)        #-- x2 is alias for cj('Dcb')
+outp_01a: str = f'{x}{intro_01a.center(90)}'; print(outp_01a)   #-- print exercise frame (01)
+outp_01b: str = f'{x}{intro_01b.center(90)}'; print(outp_01b)
+outp: str = f"\n{z}{intro_01c}"; print(outp)        #-- z is alias for cj('Dcb') #--reuse "outp" variable
 
 def outp_list(list_name = intro_01c_list, colors = 'Ncb', indent=10):
     for item in list_name:
@@ -139,16 +140,46 @@ def outp_list(list_name = intro_01c_list, colors = 'Ncb', indent=10):
 outp_list()     #-- execute above func
 
 url_01 = "https://oldmanlearningsupport.blogspot.com/2025/07/back-stage-support-for-old-man-learns.html"
-webbrowser.open(url_01)
+#webbrowser.open(url_01)
+print("webster temporarily disabled at line 143")
 
 url_02 = "https://steppingback269.blogspot.com/2025/07/code-beauty-trumps-that-of-display.html"
-webbrowser.open(url_02)
+#webbrowser.open(url_02)
+print("webster temporarily disabled at line 147")
 print(intro_01d, '\n')
 
-outp_01x: str = cj('Hrb') + intro_01x.center(90); print(outp_01x)
-outp_01y: str = cj('Hyb') + intro_01y.center(90); print(outp_01y)
+def next_frame(display_id = '(02)', intro_01x = f'{display_id} Hit "c" or "SPACE" to continue to next learning frame',
+               intro_01y = 'Hit "m" to open browser to show more information re this frame'):
+    outp_01x: str = cj('Hrb') + intro_01x.center(90); print(outp_01x)
+    outp_01y: str = cj('Hyb') + intro_01y.center(90); print(outp_01y)
+    wait_01 = True
+    while wait_01 == True:
+        keyrd = keyboard.read_key()  # -- do just one read opertion per while loop
+        if keyrd == "c":  # if the "c" key is pressed
+            wait_01 == False;
+            response = 'c'
+            print('You Pressed the "c" key --this is a debug notification')
+            break
+        elif keyrd == "space":  # if the "space" key is pressed
+            wait_01 == False;
+            response = ' '
+            print(f'\nYou Pressed the "SPACE" key --this is a debug notification')
+            break
+        elif keyrd == "x":  # if the "x" key is pressed
+            wait_01 == False;
+            response = 'x'
+            print(f'\nYou Pressed the "x" key --this is a debug notification')
+            break
+        elif keyrd == "m":  # if the "m" key is pressed
+            wait_01 == False;
+            response = 'm'
+            print(f'\nYou Pressed the "m" key --this is a debug notification')
+            break
+        else:
+            continue
+    return response
 
-
+user_choice = next_frame('(02)')
 
 #def test(callback):
 #    print(callback.name)
@@ -162,55 +193,46 @@ outp_01y: str = cj('Hyb') + intro_01y.center(90); print(outp_01y)
 #        print('You Pressed the "x" key')
 #        break
 
-wait_01 = True
-while wait_01 == True:
-    keyrd = keyboard.read_key()     #-- do just one read opertion per while loop
-    if keyrd == "c":  # if the "c" key is pressed
-        wait_01 == False; response='c'
-        print('You Pressed the "c" key --this is a debug notification')
-        break
-    elif keyrd == "space":  # if the "space" key is pressed
-        wait_01 == False; response=' '
-        print('You Pressed the "SPACE" key --this is a debug notification')
-        break
-    elif keyrd == "x":  # if the "x" key is pressed
-        wait_01 == False; response='x'
-        print('You Pressed the "x" key --this is a debug notification')
-        break
-    elif keyrd == "m":  # if the "m" key is pressed
-        wait_01 == False; response='m'
-        print('You Pressed the "m" key --this is a debug notification')
-        break
-    else:
-        continue
+
 # breakpoint()
 
-if response == 'c' or response == ' ':
-    print(cj("Y"), f'DEFINITION: A Python "list" is a mutable array of items each addressed by an index starting at i = 0',
-      cj("OWb"))
-if response == 'm':
-   webbrowser.open("https://www.geeksforgeeks.org/python/string-alignment-in-python-f-string/")
-   breakpoint()
+if user_choice == 'c' or user_choice == ' ':
+    print(f'{y}DEFINITION: A Python "list" is a mutable array of items each addressed by an index starting at i = 0\n')
+    pass
 
-intro_02 = input(intro_01.center(90))
+if user_choice == 'm':
+    outp = f'{x}Normally m will open a web browser info page'; print(outp)
+    outp = f'{w}But for this frame two web browser info pages were already generated'; print(outp,'\n\n')
+    pass
+#webbrowser.open("https://www.geeksforgeeks.org/python/string-alignment-in-python-f-string/")
 
-sl1('(01)')
-welcome_txt_01 = f'First Demo is use of COLORAMA module with clr[abc] Dictionary to vary text colors'
-intro_01 = 'Hit <ENTER> to continue'
-print(clr["Bmb_"],welcome_txt_01.center(90),clr["o"])
+mssg_02 = f'This will be a further exercise showing COLORAMA foreground and background colors'
+display_id = '(02)'     #-- print mat number 2
+sl1(display_id)
+slm(mssg_02)     #-- middle line uses this text message (don't insert color inside mid mssg !!)
 sl2()
-intro_02 = input(intro_01.center(90))
 
+# Colors reminder {w}=White/b, {x}=Cyan/b, {z}=dim cyan, {y}=Yellow, {cj('HBw')}= Hight Black/w
+print(f'\n{x}TEST of cj[abc] permutations\n')
 
-print(f'\nTEST of clr[abc] dictionary var\'s {clr["y"]}Is this yellow?{clr["w"]} and this white?', sep='')
-print(f'bw_= \t{clr["bw_"]}This should be black on white backround {clr["o"]} and then back to normal')
-print(f'Bbw_ = \t{clr["Bbw_"]}This should be Bright black on white backround {clr["o"]} and then back to normal')
-print(f'Dbw_ = \t{clr["Dbw_"]}This should be Dim black on white backround {clr["o"]} and then back to normal')
-print(f'by_ = \t{clr["by_"]}This should be black on yellow backround {clr["o"]} and then back to normal')
-print(f'Bwu_ = \t{clr["Bwu_"]}This should be Bright white on blue backround {clr["o"]} and then back to normal')
-print(f'Bmb_ = \t{clr["Bmb_"]}This should be Bright magenta on black backround {clr["o"]} and then back to normal')
-breakpoint()
+print(f'{x}bW = \t{cj("bW")}This should be plain-Black on lite-white backround {w}and then back to white/b')
+print(f'{x}HbY = \t{cj("HbY")}This should be brite Black on lite yellow backround {x}and then back to normal cyan')
+print(f'{x}HcW = \t{cj("HcW")}This should be brite Cyan on brite white backround {x}and then back to normal')
+print(f'{x}DcW = \t{cj("DCW")}This should be dim Cyan on brite white backround {x}and then back to normal')
+print(f'{x}Hbu = \t{cj("HbU")}This should be brite Black on brite blue backround {x}and then back to normal')
+print(f'{x}Uw = \t{cj("Uw")}This should be brite blue on dim white backround {x}and then back to normal')
+symbols_01 = "▃" * 20; symbols_02 = "▔" * 20; symbols_03 = "▚" * 20;
+print(f'{x}HbY = \t{cj("HbY")}{symbols_01}{symbols_02}{symbols_03}{x}and then back to normal cyan')
 
+print(f'\n{x}See the adjacent browser for more info from G4G re Colorama {y}and TermColor -->{x}')
+print(f'{x}Also see the adjacent browser for {y}Symbol picker website -->{x}')
+print(f'\nNote that not all fore and background combinations work well with text chars\n')
+url_03 = "https://www.geeksforgeeks.org/python/print-colors-python-terminal/"
+webbrowser.open(url_03)
+url_04 = "https://fsymbols.com"
+webbrowser.open(url_04)
+
+#breakpoint()
 
 def brk(mssg):
     print(f'\n(X): A debug {Fore.YELLOW}brk(mssg) point{Fore.WHITE} was hit at {Fore.LIGHTGREEN_EX}line '
@@ -219,16 +241,16 @@ def brk(mssg):
     print(f'(Z): Additional message: {mssg}\n')
     breakpoint()
 
-
 frame_current = inspect.currentframe()
 frame_info = inspect.getframeinfo(frame_current)
 
-sl()
+sl3()   #-- separator line
 
-print(f'(1): ' + f'Using the {Fore.YELLOW}Inspect module{Style.BRIGHT}{Fore.LIGHTWHITE_EX} we can learn the line number in the main code\n\t'
-              + f'At current execution time it  is Line Number {frame_info.lineno}')
-print(f'(2): We can also get the {Fore.GREEN}file path + name{Style.BRIGHT}{Fore.LIGHTWHITE_EX} out of the frame info tuple, it is: \n\t {frame_info.filename}')
-print(f'(3): We can also get the {Fore.LIGHTGREEN_EX}name of the function{Style.BRIGHT}{Fore.LIGHTWHITE_EX} we are inside, at moment it is none, we get {frame_info.function}')
+# Colors reminder {w}=White/b, {x}=Cyan/b, {z}=dim cyan, {y}=Yellow, {cj('HBw')}= Hight Black/w
+print(f'(1): Using the {y}Inspect module {x}we can learn the line number in the main code\n\t'
+      f'At current execution time it is Line Number {frame_info.lineno}')
+print(f'(2): We can also get the {cj('g')}file path + name {x}out of the frame info tuple, it is: \n\t {frame_info.filename}')
+print(f'(3): We can also get the {cj('G')}name of the function {w}we are inside, at moment it is none, we get {frame_info.function}')
 
 #^^^ above is based on https://www.youtube.com/watch?v=myTz-ZDkO6Q Professor Gerry Jenkins (https://www.youtube.com/@gjenkinsedu)
 #^^^ see also Python.org documentation at https://docs.python.org/3/library/inspect.html
@@ -237,7 +259,7 @@ def get_line_numb_info_demo():
     frame_current = inspect.currentframe()
     frame_info_prior = inspect.getframeinfo(frame_current.f_back)   #--don't get from execution of this func, get from caller
     frame_info_current = inspect.getframeinfo(frame_current)
-    sl()
+    sl3()
 
     print(f'(a): ',f'current= {frame_info_current}', f'Using the Inspect module we can learn the line number in the caller"s code\n\t',
           f'At current execution time it is \tLine Number {frame_info_prior.lineno}')
@@ -251,7 +273,7 @@ def gotten_line_numb_1back():
     frame_info_prior = inspect.getframeinfo(frame_current.f_back)   #--don't get from execution of this func, get from caller
     frame_info_current = inspect.getframeinfo(frame_current)
     return f'{frame_info_prior.lineno}'
-sl()
+sl3()
 print(f'\n(d): The gotten_line_numb func returned the following line number: \t{gotten_line_numb_1back()}')
 
 def gotten_line_numb_2back():   #-- not finished see stack inspect 2 back !!!!
@@ -268,7 +290,7 @@ brk('Used sys.getframe(2) and (dot)f_lineno to corectly point to line of brk() !
 
 # 01:CHOICE(), 02:SHUFFLE(), 03:RANDOMrange(), more ...
 
-sl()
+sl3()
 
 def halt2_study(maybe, feature):
     if (maybe.lower() == 'n' or maybe.lower() == 'no' or maybe.lower() == 'not'):
@@ -290,7 +312,7 @@ gen_index_templ4(10)    #-- creates an example template of 2 digits each for ind
 
 halt2_study('yes', 'Generate template of sequential, 2-digit index numbers')
 
-sl()
+sl3()
 
 def gen_preFilled_list4(numb_indices, filler = 0):    #--func prints out a list of arg1 number of indices plus one
     skip_diz_template_A = [filler] * (numb_indices +1)    #-- and returns the gen'd list filled with the filler
