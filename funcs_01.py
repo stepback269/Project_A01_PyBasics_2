@@ -1,33 +1,49 @@
-# copy Learn Lists functions _s02 to here? 7/31/2025
+# Date: 8/19a/2025   current editing line = 122 !!!
+
 # check out the Data Engineer: https://www.youtube.com/@GambillDataEngineering
 
 from . import vars_01 as v  #-- google "python syntax of an import from statement"
 from . import mssgs_01 as msg
 
-print(f'(3) The importation of funcs_01 into Main has begun\n')
+'''
+Although the MAIN module imports all the necessary module codes, this module must import the name-space aspects
+of those modules, namely, those of the vars_01 module plus those of the mssgs_01 module 
+'''
 
-def ascii_fm_az(fm2: str = 'a-z'):
+# Use Ctrl + Shft + x to insert hash tag (#) and advance to next line (was used immediately below)
+# ----------------------------------------------
+#print(f'(3) The importation of funcs_01 into Main has begun\n')
+#print(f'********** (3) This is a test run from inside the funcs module of color printout *******\n')
+#print(f'{v.Ansii["YELLOW"]}Is this Yellow?{v.Ansii["LIGHT_WHITE"]}\n')
+#print(f'{v.yy_} what about now using shallow copies? {v.w_}\n')
+#print(f'end of inside funcs test\n')
+
+
+def ascii_fm_az(fm2: str = 'A-Z'):  #cap alpha's have the smaller ANSI code values than lower case
     lo_hi = fm2.split(sep ='-') #get from and to chars
     lo = lo_hi[0]; lo_ascii = ord(lo)
     hi = lo_hi[1]; hi_ascii = ord(hi)
-    print(f'debug check list = {ascii_fm_az()}')  # -- verify that list contains ascii low and hi values
+    #print(f'debug check list = {ascii_fm_az()}')  # -- verify that list contains ascii low and hi values
     return [lo_ascii-1, hi_ascii+1]
-
+# --^^-- noes re above func
+#--^^^-- usage below
+# l_01 = ascii_fm_az('a-z') # returns a list of integers, the ANSI codes
+# ord returns the ascii or unicode of a string char, See:
+# https://www.geeksforgeeks.org/dsa/ascii-table/
+# https://symbl.cc/en/unicode-table/#block-elements
 
 def ascii_2_str (ask = 65):
     return chr(ask)     #--^^-- use this to iterate and concatenate to varaible name
+#--^^-- chr() returns the string char of a supplied unicode
 
 def test_iterate(lo, hi):   #use this vvv to validate the while loop outputs
-    ask_value = ascii_fm_az(lo, hi)[0]
+    ask_value = ascii_fm_az(lo, hi)[0]  #-- start at the lower ascii code (minus 1)
     while ask_value < ascii_fm_az(lo, hi)[1]:
         ask_value += 1
-        print(ascii_2_str(ask_value))   #--check that we iterate from a to z
+        print(ascii_2_str(ask_value))   #--check that we iterate from 'A' to 'Z'
     return
-#--^^^-- usage below
-# l_01 = ascii_fm_az('a-z')
 
-
-def get_dict(dict_name = 'clr'): #--returns a named dictionary
+def get_dict(dict_name = 'clr'): #-- input a string, returns a named dictionary
     clr: dict = {'b': "BLACK", 'r': "RED", 'g': "GREEN", 'y': "YELLOW", 'u': "BLUE", 'm': "MAGENTA", 'c': "CYAN",
                  'w': "WHITE",
                  'o': "RESET",
@@ -42,7 +58,7 @@ def get_dict(dict_name = 'clr'): #--returns a named dictionary
         f_out = clr
     elif dict_name == 'clr_':
         f_out = clr_
-    return f_out  # -- func returns the whole of the dictionary; better idea= use a list or dictionary of dictionaries
+    return f_out  # --^^-- above func returns the whole of the dictionary; better idea= use a list or dictionary of dictionaries
 
 def get_dict_expansion(dict_name='clr', alias = 'W_'): #-- Reverse alias is the longer equivalent of input alias string
     #clr: dict = {'b':"BLACK", 'r':"RED", 'g':"GREEN", 'y':"YELLOW", 'u':"BLUE", 'm':"MAGENTA", 'c':"CYAN", 'w':"WHITE",
@@ -61,7 +77,7 @@ def get_dict_expansion(dict_name='clr', alias = 'W_'): #-- Reverse alias is the 
     return f_out    #-- func returns expansion from named dictionary
 
 def qif_inStr_OK(inStr, slices_list= [0, 1, 2], allowed= 'yYesnNo'):
-    #^^^-- Query if the input string chars are in the allowed_chars_string
+    #--^^^-- Query if the input string chars are in the allowed_chars_string
     for s in slices_list:
         if inStr[s] in allowed:
             continue
@@ -70,54 +86,8 @@ def qif_inStr_OK(inStr, slices_list= [0, 1, 2], allowed= 'yYesnNo'):
             return False
     return True  #--if no misallowed detected, then return as true, meaning allowed
 
-print(f'importation of funcs is about to hit the cj() func')
-
-def cj(chars: str = 'HWb', dict_name = 'clr'):     #-- COLORAMA color commands generator using the clr dictionary
-    numb = len(chars)
-    allowed_4_Fore = 'brgyumcwoBRGYUMCW'
-    allowed_4_Style = 'DNHO'
-    dict = get_dict(dict_name) #--using above function for picking one of n dictionaries
-
-    if numb < 1:
-        print(f'argument error in cj function call')
-        return None
-
-    elif numb < 2:
-        if qif_inStr_OK(chars, [0], allowed_4_Fore):  #-- check for valid input String
-            pass
-        else:
-            print(f'qif_inStr_OK found a bad input char at below breakpoint')
-            breakpoint()
-            return None
-        sum: str = getattr(Fore, d[f'{chars[0]}'])    #-- if one char it is FORE color
-        return sum
-
-    elif numb < 3:
-        if qif_inStr_OK(chars, [0, 1], allowed_4_Fore):  #-- check for valid input String
-            pass
-        else:
-            print(f'Bad character in inputs to cj()')
-            return None
-        #sum: str = getattr(Fore, d[f'{chars[0]}'])  + getattr(Back, d[f'{chars[1]}']) # -- if 2 chars
-        return #sum
-
-    elif numb < 4:
-        if qif_inStr_OK(chars, [1, 2], allowed_4_Fore):
-            pass
-        elif qif_inStr_OK(chars, [0], allowed_4_Style):
-            pass
-        else:
-            print(f'Bad character in inputs to cj() found by qif at numb=3')
-            return "error in numb=3"
-        #sum: str = getattr(Style, d[f'{chars[0]}'])  + getattr(Fore, d[f'{chars[1]}'])  + getattr(Back, d[f'{chars[2]}']) # -- if 3
-        return #sum
-    else:
-        print(f'arguments error in cj function call')
-        return None
-
-
-#--vv-- next are repeated char printouts for creating title boxes (sl= single line of filler char)
-
+#--vv-- Below 'sl' funcs generate the poor man's GUI box (filler can be a box dwg code)
+#--vv-- 'slm()' is the one that prints lines in the middle of the GUI box
 def sl3(filler="*", times=90):   #-- separation line w \n above and an extra one below
     d = get_dict('clr_')
     outp: str = v.W_ + filler * times
@@ -145,17 +115,58 @@ def sl0(filler="*", times=40):   #-- separation line w no CRLF
 
 def slm(mssg="MID MESSAGE GOES HERE", filler="**", times=2):   #-- mid box messages
     d = get_dict('clr_')
-    outpmid: str = f"{v.M_}{filler}{v.M_}{mssg.center(90-4)}{v.W_}{filler}"
+    width= 115-4; centr_fill=" "
+    outpmid: str = f"{filler}{mssg.center(width, centr_fill)}{filler}"
     print(outpmid)
     return None
 
-def outp_list(list_name = msg.intro01_list_a, color = v.C_, indent=10):  ## 137
+def outp_centrd_mssgs(mssg_type= 'intro_', frame_id= '00', lo_hi_range= 'A-Z'):
+    mssg_id_prefix = mssg_type + frame_id
+    #--^^^-- the message name is a concat of prefix plus an alpha char
+    #--vvv-- set up to iterate thru to-be centred messages, the lo_hi_range is a string
+    lo_hi = lo_hi_range.split(sep='-')  # get from and to chars & convert them to unicode integers
+    lo = lo_hi[0]; lo_ascii: int = ord(lo)
+    hi = lo_hi[1]; hi_ascii: int = ord(hi)
+    mssg_id_i = lo_ascii - 1
+    while mssg_id_i < hi_ascii + 1:     ### coding NOTE: put mssg_id_txt inside an exec() code string !!!!!
+        mssg_id_i += 1
+        mssg_id_txt = mssg_id_prefix + chr(mssg_id_i)   #-- iterate from a to z (or other lo to hi)
+        gotten_mssg = getattr(msg, mssg_id_txt )
+        outp_mssg_i: str = f'{gotten_mssg.center(120)}'
+        print(outp_mssg_i)
+        #exec(outp_mssg_i)   #-- THIS DIDN'T WORK
+    return
+
+def outp_in_list(list_name = msg.intro_00_in_list, colors = 'GREEN', indent=10):
     for item in list_name:
-        print(f'{v.Y_}{spc:<10}{item}')       #-- note colon between spc and indent
+        print(f'{msg.Anssii[colors]}{spc:<10}{item}')       #-- note colon between spc and indent amount
     #print(f'{x4}\nend of for loop hit <--a debug notification\n')
     return
 
-def next_frame(display_id = '(00)'): ##154
+def outp_in_mssgs(mssg_type= 'intro_', frame_id= '00', lo_hi_range= 'A-Z'):
+    spc = ' '
+    mssg_id_prefix = mssg_type + frame_id
+    #--^^^-- the message name is a concat of prefix plus an alpha char (cap A-Z is lower ascii than a-z)
+    #--vvv-- set up to iterate thru to-be INDENTED messages, the lo_hi_range is a string
+    lo_hi = lo_hi_range.split(sep='-')  # get from and to chars & convert them to unicode integers
+    lo = lo_hi[0]; lo_ascii: int = ord(lo)
+    hi = lo_hi[1]; hi_ascii: int = ord(hi)
+    mssg_id_i = lo_ascii - 1
+    while mssg_id_i < hi_ascii + 1:     ### coding NOTE: put mssg_id_txt inside an exec() code string !!!!!
+        mssg_id_i += 1
+        mssg_id_txt = mssg_id_prefix + chr(mssg_id_i)   #-- iterate from a to z (or other lo to hi)
+        gotten_mssg = getattr(msg, mssg_id_txt )    #-- HERE is where the mid message is assembled !!!
+        outp_mssg_i: str = f'{gotten_mssg}'
+        print(f'{spc:<10}{outp_mssg_i}')
+    return
+
+def outp_list(list_name = msg.intro01_list_A, color = v.C_, indent=10):  ## 157
+    for item in list_name:
+        print(f'{v.yy_}{spc:<10}{item}')       #-- note colon between spc and indent amount
+    #print(f'{x4}\nend of for loop hit <--a debug notification\n')
+    return
+
+def next_frame(display_id = '(00)'): ##163
     intro_01x: str = 'Hit "c" or "SPACE" to continue to next learning frame'
     intro_01y: str = 'Hit "m" to open browser to show more information re this frame'
     outp_01x: str = f'{v.R_}{display_id}: {intro_01x.center(90)}'; print(outp_01x)
@@ -187,14 +198,14 @@ def next_frame(display_id = '(00)'): ##154
             continue
     return response
 
-def brk(mssg):      ##245
+def brk(mssg):      ##195
     print(f'\n(X): A debug {v.Y_}brk(mssg) point{v.W_} was hit at {v.G_}line '
           f'{gotten_line_numb_2back()}{v.W_}')
     print(f'(Y): Pdb debugger commands: l=LIST, c=CONTINUE, pp var= PrettyPrint the specific var')
     print(f'(Z): Additional message: {mssg}\n')
     breakpoint()
 
-def get_line_numb_info_demo():      ##266
+def get_line_numb_info_demo():      ##202
     frame_current = inspect.currentframe()
     frame_info_prior = inspect.getframeinfo(frame_current.f_back)   #--don't get from execution of this func, get from caller
     frame_info_current = inspect.getframeinfo(frame_current)
@@ -206,19 +217,19 @@ def get_line_numb_info_demo():      ##266
     print(f'(c): We can also get the name of the function we are inside, at moment we get: \t{frame_info_current.function}')
     return
 
-def gotten_line_numb_1back():  ##279
+def gotten_line_numb_1back():  ##214
     frame_current = inspect.currentframe()
     frame_info_prior = inspect.getframeinfo(frame_current.f_back)   #--don't get from execution of this func, get from caller
     frame_info_current = inspect.getframeinfo(frame_current)
     return f'{frame_info_prior.lineno}'
 
-def gotten_line_numb_2back():   ##287 #-- not finished see stack inspect 2 back !!!!
+def gotten_line_numb_2back():   ##220 #-- not finished see stack inspect 2 back !!!!
     frame_current = inspect.currentframe()
     frame_info_2priors_back  = sys._getframe(2)   #--get frame info from caller's caller
     frame_info_current = inspect.getframeinfo(frame_current)
     return f'{frame_info_2priors_back.f_lineno}'    #--Google "python inspect two frames back"
 
-def halt2_study(maybe, feature):    ##303
+def halt2_study(maybe, feature):    ##226
     if (maybe.lower() == 'n' or maybe.lower() == 'no' or maybe.lower() == 'not'):
         return
     else:
@@ -226,7 +237,7 @@ def halt2_study(maybe, feature):    ##303
         wait = input('<Enter> to continue to next demonstartion\n')
     return
 
-def gen_index_templ4(numb_indices):     ##310 #--a func that prints out a template of input number of indices plus one
+def gen_index_templ4(numb_indices):     ##234 --a func that prints out a template of input number of indices plus one
     skip_diz_template_create = range(numb_indices + 1)
     skip_diz_template = list(skip_diz_template_create)
     print(f'{v.G_}', end = '')
@@ -234,13 +245,13 @@ def gen_index_templ4(numb_indices):     ##310 #--a func that prints out a templa
     print(f'{v.W_}')
     print(f'\n{v.M_}Template printed out above for {numb_indices} plus one indices{v.W_}\n')
 
-def gen_preFilled_list4(numb_indices, filler = 0):   ##325 #--func prints out a list of arg1 number of indices plus one
+def gen_preFilled_list4(numb_indices, filler = 0):   ##242 #--func prints out a list of arg1 number of indices plus one
     skip_diz_template_A = [filler] * (numb_indices +1)    #-- and returns the gen'd list filled with the filler
     for i in skip_diz_template_A: print(format(i ,"02d"), end = ' ')  #-- no CRLF
     print(f'\nPre-filled list is printed above for {numb_indices} plus one indices\n')
     return skip_diz_template_A
 
-def halt4_ideas(halt4_IDs_params):      ##354
+def halt4_ideas(halt4_IDs_params):      ##248
     p = halt4_IDs_params         #-- shallow assign creates a shorter var name for the input dictionary
     original = p['tute_input_var1']     #-- get the original list example
     result = p['tute_output1']
@@ -320,3 +331,52 @@ def gen_list_of_methods(): ##499
     return
 
 print(f'import of funcs has finished')
+
+# CODE DISCARD ZONE **************************************************************** vvvvvvv
+#print(f'importation of funcs is about to hit the cj() func')
+# NO LONGER USING COLORAMA !!!!
+#def cj(chars: str = 'HWb', dict_name = 'clr'):     #-- COLORAMA color commands generator using the clr dictionary
+#    numb = len(chars)
+#    allowed_4_Fore = 'brgyumcwoBRGYUMCW'
+#    allowed_4_Style = 'DNHO'
+#    dict = get_dict(dict_name) #--using above function for picking one of n dictionaries
+#
+#    if numb < 1:
+#        print(f'argument error in cj function call')
+#        return None
+#
+#    elif numb < 2:
+#        if qif_inStr_OK(chars, [0], allowed_4_Fore):  #-- check for valid input String
+#            pass
+#        else:
+#            print(f'qif_inStr_OK found a bad input char at below breakpoint')
+#            breakpoint()
+#            return None
+#        sum: str = getattr(Fore, d[f'{chars[0]}'])    #-- if one char it is FORE color
+#        return sum
+#
+#    elif numb < 3:
+#        if qif_inStr_OK(chars, [0, 1], allowed_4_Fore):  #-- check for valid input String
+#            pass
+#        else:
+#            print(f'Bad character in inputs to cj()')
+#            return None
+#        #sum: str = getattr(Fore, d[f'{chars[0]}'])  + getattr(Back, d[f'{chars[1]}']) # -- if 2 chars
+#        return #sum
+#
+#    elif numb < 4:
+#        if qif_inStr_OK(chars, [1, 2], allowed_4_Fore):
+#            pass
+#        elif qif_inStr_OK(chars, [0], allowed_4_Style):
+#            pass
+#        else:
+#            print(f'Bad character in inputs to cj() found by qif at numb=3')
+#            return "error in numb=3"
+#        #sum: str = getattr(Style, d[f'{chars[0]}'])  + getattr(Fore, d[f'{chars[1]}'])  + getattr(Back, d[f'{chars[2]}']) # -- if 3
+#        return #sum
+#    else:
+#        print(f'arguments error in cj function call')
+#        return None
+#
+
+#--vv-- next are repeated char printouts for creating title boxes (sl= single line of filler char)

@@ -39,18 +39,25 @@ Ansi_B: dict = {'BLACK' : a+'100'+b, 'RED' : a+'101'+b, 'GREEN' : a+'102'+b, 'BR
     'BLUE' : a+'104'+b, 'PURPLE' : a+'105'+b, 'CYAN' : a+'106'+b, 'LIGHT_GRAY' : a+'107'+b,
     'Default' : a+'109'+b}  #--Bright Back colors
 x_ = Ansii['LIGHT_WHITE'] + Ansi_['BLACK']
-W_ = Ansii['BOLD'] + Ansii['LIGHT_WHITE'] + Ansi_['BLACK'] #HWb
+W_ = Ansii['BOLD'] + Ansii['LIGHT_WHITE']  +Ansi_['BLACK'] #HWb
 w_ = Ansii['LIGHT_WHITE'] + Ansi_['BLACK']
-M_ = Ansii['BOLD'] + Ansii['PURPLE'] +      Ansi_['BLACK'] #Hmb
+M_ = Ansii['BOLD'] + Ansii['PURPLE']       +Ansi_['BLACK'] #Hmb
 m_ = Ansii['PURPLE'] + Ansi_['BLACK']
 C_ = Ansii['FAINT'] + Ansii['CYAN'] +       Ansi_['BLACK'] #DCb
 R_ = Ansii['BOLD'] + Ansii['RED'] +         Ansi_['BLACK'] #HRb
 Y_ = Ansii['BOLD'] + Ansii['YELLOW'] +      Ansi_['BLACK'] #HYb -- Define aliases for color combos to use inside funcs
 G_ = Ansii['BOLD'] + Ansii['GREEN'] +      Ansi_['BLACK']
 y_ = Ansii['YELLOW'] + Ansi_['BLACK']
-z_ = Ansii['CYAN'] + Ansi_['BLACK']
+z_ = Ansii['LIGHT_CYAN'] + Ansi_['BLACK']
 x2= z_
 x3= Y_
+
+print(f'\n ********** This  is  a debug test in the vars module --line 55 **********\n')
+print(f'Direct refernce to Anssi[colr_name] works but shallow copy does not. Why?\n')
+print(f'{Ansii['YELLOW']}Hello {Ansii['GREEN']}World {Ansii['RED']}in col{Ansii['LIGHT_WHITE']}or\n\n')
+yy_ = Ansii['YELLOW']; g_ = Ansii['GREEN']; r_ = Ansii['RED']; w_ = Ansii['LIGHT_WHITE']
+print(f'{yy_}This is a second {g_} attempt {r_} of color coding {w_} using the shallow copies')
+
 #clr: dict = {'b':"BLACK", 'r':"RED", 'g':"GREEN", 'y':"YELLOW", 'u':"BLUE", 'm':"MAGENTA", 'c':"CYAN", 'w':"WHITE",
 #             'o':"RESET",
 #             'B':"LIGHTBLACK_EX", 'R':"LIGHTRED_EX", 'G':"LIGHTGREEN_EX", 'Y':"LIGHTYELLOW_EX", 'U':"LIGHTBLUE_EX",

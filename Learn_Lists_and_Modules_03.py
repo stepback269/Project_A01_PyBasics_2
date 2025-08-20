@@ -1,5 +1,5 @@
-# Date: 8/03a/2025  "Turing Complete" revamp -joke based on recent Reddit interaction
-# Note: Python crashes if I try to directly run code inside the module packages
+# Date: 8/19a/2025  "Turing Complete" revamp -joke based on recent Reddit interaction
+# Note: Python was crashing, see below. Now working on function list centerd messages
 # Escaping from Circular Import Hell here:
 # https://steppingback269.blogspot.com/2025/08/crash-burn-rinse-and-repeat-your-slow.html
 '''
@@ -20,77 +20,52 @@ import os
 import keyboard             #--- enable single key press inputs
 import webbrowser           #--- enable opening up desired URL's for learning frames
 import pyperclip            #--- enable use of clipboard
+#import random
+from random import choice   #--- enable random choice() method
 
 from Package_01 import vars_01 as v  #-- google "python syntax of an import from statement"
 from Package_01 import mssgs_01 as msg
 from Package_01 import funcs_01 as fn
 
-print(f'(4) we are now in Main after successfully importing funcs_01 last\n\n')
+print(f'(4) we are now in Main at its line 30 after successfully importing funcs_01 last\n\n')
 
-# This is first mat using the imported functions (fn[dot] prefix)
+print(f'********** (4) This is a test run from inside the MAIN module of color printout *******\n')
+
+print(f'{v.Ansii["YELLOW"]}Is this Yellow?{v.Ansii["LIGHT_WHITE"]} printed inside MAIN\n')
+print(f'{v.yy_} what about now using shallow copies? {v.w_}\n')
+print(f'end of inside MAIN coloring test --we are at line 36 inside MAIN\n')
+
+# This is first WELCOME mat using the imported functions (fn[dot] prefix)
 spc = ' '
 display_id = '(00)'     #-- print initial welcome mat
 fn.sl1(display_id)      #-- get the sl1 function from the funcs module !!!
 fn.slm(msg.intro_00)    #-- middle line uses text fetched from the messages module !!!!
 fn.sl2()
 
-breakpoint()
+#breakpoint()
 # *************************************************
 
+frame_id = '00'
+fn.outp_centrd_mssgs('intro_', frame_id, 'A-D')  #-- messages intro_00a thru intro_00e are the centerd ones
+fn.outp_in_mssgs('intro_', frame_id, 'F-K')
+print('\n')
+print(f'REMEMBER TO {v.r_}MANUALLY CLOSE{v.z_} THREE WEB PAGES --MUSIC PLUS OLD MAN \n')
+# breakpoint()
 
-outp_01a: str = f'{x}{intro_01a.center(90)}'; print(outp_01a)   #-- print exercise frame (00)
-print(f'{intro_01aa}'); print(f'{intro_01ab}')
-outp_01b: str = f'{x}{intro_01b.center(90)}'; print(outp_01b)
-outp: str = f"\n{z}{intro_01c}"; print(outp)        #-- z is alias for cj('Dcb') #--reuse "outp" variable
-
-def outp_list(list_name = intro_01c_list, colors = 'Ncb', indent=10):
-    for item in list_name:
-        print(f'{fn.cj(colors)}{spc:<10}{item}')       #-- note colon between spc and indent
-    #print(f'{x4}\nend of for loop hit <--a debug notification\n')
-    return
-
-outp_list()     #-- execute above func
+url_00 = "https://www.youtube.com/watch?v=mhNg55_IYiw&list=RDmhNg55_IYiw&start_radio=1&t=189s" #chill flow music
+webbrowser.open(url_00)
+print("webster MUSIC launch temporarily disabled at line 56 ???\n")
 
 url_01 = "https://oldmanlearningsupport.blogspot.com/2025/07/back-stage-support-for-old-man-learns.html"
-#webbrowser.open(url_01)
-print("webster temporarily disabled at line 143")
+webbrowser.open(url_01)
+print("webster back stage temporarily disabled at line 60 ???\n")
 
-url_02 = "https://steppingback269.blogspot.com/2025/07/code-beauty-trumps-that-of-display.html"
-#webbrowser.open(url_02)
-print("webster temporarily disabled at line 147")
-print(intro_01d, '\n')
+url_02 = "https://steppingback269.blogspot.com/2025/07/links-for-python-noobs.html"
+webbrowser.open(url_02)
+print("webster Old Man for NOOBS temporarily disabled at MAIN line 64 ??")
+# print(intro_01d, '\n')
 
-def next_frame(display_id = '(00)'):
-    intro_01x: str = 'Hit "c" or "SPACE" to continue to next learning frame'
-    intro_01y: str = 'Hit "m" to open browser to show more information re this frame'
-    outp_01x: str = f'{fn.cj('Hrb')}{display_id}: {intro_01x.center(90)}'; print(outp_01x)
-    outp_01y: str = f'{fn.cj('Hyb')}{intro_01y.center(90)}'; print(outp_01y)
-    wait_01 = True
-    while wait_01 == True:
-        keyrd = keyboard.read_key()  # -- do just one read opertion per while loop
-        if keyrd == "c":  # if the "c" key is pressed
-            wait_01 == False;
-            response = 'c'
-            # print('You Pressed the "c" key --this is a debug notification')
-            break
-        elif keyrd == "space":  # if the "space" key is pressed
-            wait_01 == False;
-            response = ' '
-            # print(f'\nYou Pressed the "SPACE" key --this is a debug notification')
-            break
-        elif keyrd == "x":  # if the "x" key is pressed
-            wait_01 == False;
-            response = 'x'
-            # print(f'\nYou Pressed the "x" key --this is a debug notification')
-            break
-        elif keyrd == "m":  # if the "m" key is pressed
-            wait_01 == False;
-            response = 'm'
-            # print(f'\nYou Pressed the "m" key --this is a debug notification')
-            break
-        else:
-            continue
-    return response
+breakpoint()
 
 display_id = '(00)'
 user_choice = next_frame(display_id)
@@ -316,7 +291,7 @@ print(f'First tutorial should be number #: 01: CHOICE() unless the skip_diz list
 #: 01:
 method_name = 'CHOICE()'; method_ID_numb = 1; verb= 'Choosing dice roll outcome'
 
-from random import choice
+
 # face_imgs = ['🎲', '⛹️‍♀️', '🧑🏻‍🤝‍🧑🏻', '👪', '👨‍👨‍👧‍👦', '👪👨‍👦', '👪👪']  #<-- icons were obtained from below URL:
 # face_imgs = ['🀣', '🀙', '🀚🀚', '🀛🀛🀛', '🀜🀜🀜 🀜', '🀝🀝🀝 🀝🀝', '🀞🀞🀞 🀞🀞🀞']
 #face_imgs = ['🙉', '💛', '❤️❤️', '💚💚💚', '💙💙 💙💙', '💕💕❣️💕💕', '❣️❣️❣️ ❣️❣️❣️']

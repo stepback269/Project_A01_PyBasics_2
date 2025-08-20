@@ -12,64 +12,86 @@ from . import vars_01 as v #-- we are NOT importing the primary vars because mai
 
 print(f'(1) The importation of mssgs_01 into Main has begun\n')
 
+print(f'********** (2) This is a test run from inside the mssgs module of color printout *******\n')
 
-# Title Box ('00')
-intro_00 = f'WELCOME TO LEARNING AND REVIEWING PYTHON LISTS'
-intro_00a = '(00)  <-- This is the current lesson frame number'
-intro_00aa = 'The frame number (display_id) will be incrementing as we advance thru lessons'
-intro_00ab = 'At the moment this is merely an introductory first frame'
-intro_00b = f'We will be exercising various {v.x3}Python list methods{v.x2} here'
-intro_00c = 'Additionally, many other Python features are brought to light at the same time including but not limited to:'
-intro_00c0 = f'(a) Using the {v.x3}COLORAMA{v.x2} module to print different colors on the console'
-intro_00c1 = f'(b) Using {v.y_}string alignment{v.z_} (e.g., Str.center, spc:<10, more)'
-intro_00c2 = f'(c) Using {v.y_}functions to repeatedly generate{v.z_} indented lists like this one'
-intro_00c3 = f'(d) Using the {v.y_}Webster module{v.z_} to open additional info in the web browser'
-intro_00c4 = f'(e) Using the {v.y_}Keyboard module{v.z_} to detect single keystroke inputs'
-intro_00c5 = f'(f) Linking to {v.y_}my own "Back of Stage" blog{v.z_} to provide more on-topic information'
-intro_00c6 = f'(g) Opening a {v.x_}"More to Explore"{v.z_} informational web page ---> {v.y_}Look in your browser -->{v.z_}'
-intro_00c_list = [intro_00c0, intro_00c1, intro_00c2, intro_00c3, intro_00c4, intro_00c5, intro_00c6 ]
+print(f'{v.Ansii["YELLOW"]}Is this Yellow?{v.Ansii["LIGHT_WHITE"]}\n')
+print(f'{v.yy_} what about now using shallow copies? {v.w_}\n')
+print(f'end of inside mssgs test, we are at line 19 within mssgs module\n')
 
-#--^^--usages:
-#outp_01a: str = f'{x}{intro_00a.center(90)}'; print(outp_01a)   #-- print exercise frame (00)
-#print(f'{intro_00aa}'); print(f'{intro_00ab}')
-#outp_01b: str = f'{x}{intro_00b.center(90)}'; print(outp_01b)
-#outp: str = f"\n{z}{intro_00c}"; print(outp)        #-- z is alias for cj('Dcb') #--reuse "outp" variable
 
-intro_01d = f'For this first frame (00) we additionally {v.y_}link to Back Stage web page explaining "aliases" -->{v.z_}'
+# Title Box ('00')      --- vvv --- capital A-Z has lower ascii code than lower case a-z
+intro_00 = f'{v.yy_}WELCOME TO LEARNING AND REVIEWING PYTHON LISTS{v.W_}'
+intro_00A = f'(00)  <-- This is the {v.yy_}current lesson frame number{v.W_}'
+intro_00B = f'The frame number (display_id) {v.yy_}will be incrementing{v.W_} as we advance thru lessons'
+intro_00C = f'At the moment this is {v.yy_}merely an introductory{v.W_} first frame'
+intro_00D = f'We will be exercising various {v.yy_}Python list methods{v.W_} here'
+intro_00E = 'Additionally, many other Python features are brought to light at the same time including but not limited to:'
+
+intro_00F = f'(a) Using the {v.yy_}Package_01 / vars_01{v.W_} module to print different colors on the console'
+intro_00G = f'(b) Using {v.yy_}string alignment{v.z_} (e.g., Str.center, spc:<10, more)'
+intro_00H = f'(c) Using the {v.yy_}funcs_01 module{v.z_} to repeatedly generate indented lists like this one'
+intro_00I = f'(d) Using the {v.yy_}Webster module{v.z_} to open additional info/{v.r_}MUSIC{v.z_} in the web browser'
+intro_00J = f'(e) Using the {v.yy_}Keyboard module{v.z_} to detect {v.g_}single{v.z_} keystroke inputs'
+intro_00K = f'(f) Linking to {v.yy_}my own "Back of Stage" blog{v.z_} to provide more {v.g_}on-topic{v.z_} information'
+intro_00L = f'(g) Opening a {v.yy_}"More to Explore"{v.z_} informational web page ---> {v.yy_}Look in your browser -->{v.z_}'
+
+
+intro_00_in_list = [intro_00F, intro_00G, intro_00H, intro_00I, intro_00J, intro_00K, intro_00L ]
+#--^^^-- used in the outputting of the indented list ???
+
+
+intro_00M = f'For this first frame (00) we additionally {v.yy_}link to Back Stage web page explaining "aliases" -->{v.z_}'
 
 # Frame ender options
-intro_01x: str = 'Hit "c" or "SPACE" to continue to next learning frame'
-intro_01y: str = 'Hit "m" to open browser to show more information re this frame'
+intro_00X: str = 'Hit "c" or "SPACE" to continue to next learning frame'
+intro_00Y: str = 'Hit "m" to open browser to show more information re this frame'
 
 #--^^^--usages:
 #outp_01x: str = f'{cj('Hrb')}{display_id}: {intro_01x.center(90)}'; print(outp_01x)
 #outp_01y: str = f'{cj('Hyb')}{intro_01y.center(90)}'; print(outp_01y)
 
 # Title Box ('01')
-intro_01 = f'This will be a further exercise showing COLORAMA foreground and background colors'
-#--^^^--usages:
-# display_id = '(01)'     #-- print mat number 2
-# sl1(display_id)
-# slm(mssg_02)     #-- middle line uses this text message (don't insert color inside mid mssg !!)
-# sl2()
+intro_01 = f'This will be a further exercise showing ANSI foreground and background colors'
+
 
 # Colors reminder {w}=White/b, {x}=Cyan/b, {z}=dim cyan, {y}=Yellow, {cj('HBw')}= Hight Black/w
 print(f'\n{v.x_}TEST of color generator function, cj[abc]\'s Style, Fore, Back permutations\n')
 
-intro_01a = f'{v.x_}bW = \t{v.Ansii['BLACK']}{v.Ansi_['WHITE']}This should be plain-Black on lite-white backround {v.W_}and then back to white/b'
-intro_01b = f'{v.x_}HbY = \t{v.Ansii['BLACK']}{v.Ansi_['YELLOW']}This should be brite Black on lite yellow backround {v.x_}and then back to normal cyan'
-intro_01c = f'{v.x_}HcW = \t{v.Ansii['CYAN']}{v.Ansi_['WHITE']}This should be brite Cyan on brite white backround {v.x_}and then back to normal'
-intro_01d = f'{v.x_}DcW = \t{v.Ansii['CYAN']}{v.Ansi_['WHITE']}This should be dim Cyan on brite white backround {v.x_}and then back to normal'
-intro_01e = f'{v.x_}Hbu = \tThis should be brite Black on brite blue backround {v.x_}and then back to normal'
-intro_01f = f'{v.x_}Uw = \tThis should be brite blue on dim white backround {v.x_}and then back to normal'
-intro_01g = f'{v.x_}HbY = \t{v.symbols_01}{v.symbols_02}{v.symbols_03}{v.x_}and then back to normal cyan'
+intro_01A = f'{v.x_}bW = \t{v.Ansii['BLACK']}{v.Ansi_['WHITE']}This should be plain-Black on lite-white backround {v.W_}and then back to white/b'
+intro_01B = f'{v.x_}HbY = \t{v.Ansii['BLACK']}{v.Ansi_['YELLOW']}This should be brite Black on lite yellow backround {v.x_}and then back to normal cyan'
+intro_01C = f'{v.x_}HcW = \t{v.Ansii['CYAN']}{v.Ansi_['WHITE']}This should be brite Cyan on brite white backround {v.x_}and then back to normal'
+intro_01D = f'{v.x_}DcW = \t{v.Ansii['CYAN']}{v.Ansi_['WHITE']}This should be dim Cyan on brite white backround {v.x_}and then back to normal'
+intro_01E = f'{v.x_}Hbu = \tThis should be brite Black on brite blue backround {v.x_}and then back to normal'
+intro_01F = f'{v.x_}Uw = \tThis should be brite blue on dim white backround {v.x_}and then back to normal'
+intro_01G = f'{v.x_}HbY = \t{v.symbols_01}{v.symbols_02}{v.symbols_03}{v.x_}and then back to normal cyan'
 #--^^-- symbols_01 = "▃" * 20; symbols_02 = "▔" * 20; symbols_03 = "▚" * 20;
-intro_01h = f'\n{v.x_}See the adjacent browser for more info from G4G re Colorama {v.y_}and TermColor -->{v.x_}'
-intro_01i = f'{v.x_}Also see the adjacent browser for {v.y_}Symbol picker website -->{v.x_}'
-intro_01j = f'\nNote that not all fore and background combinations work well with text chars\n'
-intro01_list_a = []
-intro01_list_a = []
+intro_01H = f'\n{v.x_}See the adjacent browser for more info from G4G re Colorama {v.y_}and TermColor -->{v.x_}'
+intro_01I = f'{v.x_}Also see the adjacent browser for {v.y_}Symbol picker website -->{v.x_}'
+intro_01J = f'\nNote that not all fore and background combinations work well with text chars\n'
+intro01_list_A = []
+intro01_list_B = []
 #--^^^-- Add function to step thru lists and print them out e.g. print intro_{display_id){next_abc}
+
+URL_music00A = f'https://www.youtube.com/watch?v=2szaePjsCIw'  #--vvv-- Description of this URL is next below
+URL_descip00A = f'Future Music Explodes Brain Power --Chill Vibes' #https://www.youtube.com/@ChillVibesMusic999
+URL_music00B = f'https://www.youtube.com/watch?v=FibqV8cU_tQ&list=PL3mW7rMEvWWPdj7ddPKAIJKRCz1P52GJi'
+URL_descip00B = f'Deep Work Music for Coders —- Chill Vibes'
+URL_music00C = f'https://www.youtube.com/watch?v=l9nh1l8ZIJQ&list=RDl9nh1l8ZIJQ&start_radio=1&t=374s'
+URL_descip00C = f'rogramming / Coding / Hacking music vol.16 -- JimTV'
+URL_music00D = f'https://www.youtube.com/watch?v=ka4KN2KEGmI'
+URL_descip00D = f'Programming / Coding / Hacking music vol.24 -- JimTV'
+URL_music00E = f'https://www.youtube.com/watch?v=mhNg55_IYiw&list=RDmhNg55_IYiw&start_radio=1'
+URL_descip00E = f'Music for Work — Deep Focus Mix for Programming -- Chill Flow' #https://www.youtube.com/@chillflow09
+URL_music00F = f'https://www.youtube.com/watch?v=yjqz4hx3b0E'
+URL_descip00F = f'Music for Work — Deep Focus Mix for Programming, Coding -- Chill Flow'
+
+URL_Pydoc00A = f'https://steppingback269.blogspot.com/2025/07/links-for-python-noobs.html'  #Python Documentation
+                                                                            # (explanation next below)
+URL_Pyexp00A = f'Links for Python Noobs -- Old Man Learns to Code (OML2c)'
+URL_Pydoc00B = f'https://docs.python.org/3/' #  ---Official documentation for Python 3.13.5
+URL_Pyexp00B = f'Official Python 3.13.5 documentation'
+URL_Pydoc00C = f'https://wiki.python.org/moin/BeginnersGuide'
+URL_Pyexp00C = f'Beginner\'s Guide to Python'
 
 # ... to be continued
 print(f'(2x) The importation of mssgs_01 into Main has finished\n')
