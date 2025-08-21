@@ -1,10 +1,10 @@
-# Date: 8/19a/2025   current editing line = 122 !!!
+# Date: 8/19b/2025   current editing line = 122 !!!
 
 # check out the Data Engineer: https://www.youtube.com/@GambillDataEngineering
 
 from . import vars_01 as v  #-- google "python syntax of an import from statement"
 from . import mssgs_01 as msg
-
+import keyboard
 '''
 Although the MAIN module imports all the necessary module codes, this module must import the name-space aspects
 of those modules, namely, those of the vars_01 module plus those of the mssgs_01 module 
@@ -152,9 +152,9 @@ def outp_in_mssgs(mssg_type= 'intro_', frame_id= '00', lo_hi_range= 'A-Z'):
     lo = lo_hi[0]; lo_ascii: int = ord(lo)
     hi = lo_hi[1]; hi_ascii: int = ord(hi)
     mssg_id_i = lo_ascii - 1
-    while mssg_id_i < hi_ascii + 1:     ### coding NOTE: put mssg_id_txt inside an exec() code string !!!!!
+    while mssg_id_i <= hi_ascii-1:     ### coding NOTE: terminater at -1 because ID is inc'ed in next step !!!!!
         mssg_id_i += 1
-        mssg_id_txt = mssg_id_prefix + chr(mssg_id_i)   #-- iterate from a to z (or other lo to hi)
+        mssg_id_txt = mssg_id_prefix + chr(mssg_id_i)   #-- iterate from A to Z (or other lo to hi)
         gotten_mssg = getattr(msg, mssg_id_txt )    #-- HERE is where the mid message is assembled !!!
         outp_mssg_i: str = f'{gotten_mssg}'
         print(f'{spc:<10}{outp_mssg_i}')
@@ -166,7 +166,28 @@ def outp_list(list_name = msg.intro01_list_A, color = v.C_, indent=10):  ## 157
     #print(f'{x4}\nend of for loop hit <--a debug notification\n')
     return
 
-def next_frame(display_id = '(00)'): ##163
+def wait_4c_key(display_id = '(001)', allowed = f'"c" or "SPACE"'):
+    intro_01x: str = f'Hit {v.g_}{allowed}{v.z_} to continue to next learning frame'
+    outp_01x: str = f'{v.R_}{display_id}: {intro_01x.center(90)}';
+    print(outp_01x)
+    wait_01 = True
+    while wait_01 == True:
+        keyrd = keyboard.read_key().lower()  # -- do just one read opertion per while loop
+        if keyrd == "c":  # if the "c" key is pressed
+            wait_01 == False;
+            response = 'c'
+            # print('You Pressed the "c" key --this is a debug notification')
+            break
+        elif keyrd == "space":  # if the "space" key is pressed
+            wait_01 == False;
+            response = ' '
+            # print(f'\nYou Pressed the "SPACE" key --this is a debug notification')
+            break
+        else:
+            continue
+    return response
+
+def next_frame(display_id = '(00)'): ##169
     intro_01x: str = 'Hit "c" or "SPACE" to continue to next learning frame'
     intro_01y: str = 'Hit "m" to open browser to show more information re this frame'
     outp_01x: str = f'{v.R_}{display_id}: {intro_01x.center(90)}'; print(outp_01x)

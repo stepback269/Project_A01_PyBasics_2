@@ -1,4 +1,4 @@
-# Date: 8/19a/2025  "Turing Complete" revamp -joke based on recent Reddit interaction
+# Date: 8/21a/2025  "Turing Complete" revamp -joke based on recent Reddit interaction
 # Note: Python was crashing, see below. Now working on function list centerd messages
 # Escaping from Circular Import Hell here:
 # https://steppingback269.blogspot.com/2025/08/crash-burn-rinse-and-repeat-your-slow.html
@@ -49,27 +49,65 @@ frame_id = '00'
 fn.outp_centrd_mssgs('intro_', frame_id, 'A-D')  #-- messages intro_00a thru intro_00e are the centerd ones
 fn.outp_in_mssgs('intro_', frame_id, 'F-K')
 print('\n')
-print(f'REMEMBER TO {v.r_}MANUALLY CLOSE{v.z_} THREE WEB PAGES --MUSIC PLUS OLD MAN \n')
+
+response = fn.wait_4c_key('00.1')
+
+display_id = '(00.1)'   #-- print GUI box for aside number 00.1
+fn.sl1(display_id, f'{v.g_}▉')      #-- get the sl1 function from the funcs module !!!
+fn.slm(msg.aside_001, f'{v.g_}▎▎')    #-- middle line uses text fetched from the messages module !!!!
+fn.sl2(f'{v.g_}▉')
+
+frame_id = '001'
+fn.outp_in_mssgs('aside_', frame_id, 'A-K') #--note: logic error here was fixed
+print('\n')
+
+#print(f'REMEMBER TO {v.r_}MANUALLY CLOSE{v.z_} THREE WEB PAGES --MUSIC PLUS OLD MAN \n')
 # breakpoint()
 
 url_00 = "https://www.youtube.com/watch?v=mhNg55_IYiw&list=RDmhNg55_IYiw&start_radio=1&t=189s" #chill flow music
 webbrowser.open(url_00)
-print("webster MUSIC launch temporarily disabled at line 56 ???\n")
+#print("webster MUSIC launch temporarily disabled at line 67 ???\n")
 
 url_01 = "https://oldmanlearningsupport.blogspot.com/2025/07/back-stage-support-for-old-man-learns.html"
 webbrowser.open(url_01)
-print("webster back stage temporarily disabled at line 60 ???\n")
+#print("webster back stage temporarily disabled at line 72 ???\n")
 
 url_02 = "https://steppingback269.blogspot.com/2025/07/links-for-python-noobs.html"
 webbrowser.open(url_02)
-print("webster Old Man for NOOBS temporarily disabled at MAIN line 64 ??")
+#print("webster Old Man for NOOBS temporarily disabled at MAIN line 76 ??")
 # print(intro_01d, '\n')
+
+response = fn.wait_4c_key('00.2')   #-- SECOND "aside_" frame will follow this c key here
+
+display_id = '(00.2)'   #-- print GUI box for aside number 00.1
+fn.sl1(display_id, f'{v.g_}▉')      #-- get the sl1 function from the funcs module !!!
+fn.slm(msg.aside_002, f'{v.g_}▎▎')    #-- middle line uses text fetched from the messages module !!!!
+fn.sl2(f'{v.g_}▉')
+
+frame_id = '002'
+fn.outp_in_mssgs('aside_', frame_id, 'A-E') #--note: logic error here was fixed
+print('\n')
+
+response = fn.wait_4c_key('02')   #-- Begin lesson for APPEND after hit of c key here
+
+
+display_id = '(02)'   #-- print GUI box for frame number 02
+fn.sl1(display_id, f'{v.g_}▉')      #-- get the sl1 function from the funcs module !!!
+fn.slm(msg.append_02, f'{v.g_}▎▎')    #-- middle line uses text fetched from the messages module !!!!
+fn.sl2(f'{v.g_}▉')
+
+frame_id = '02'
+fn.outp_in_mssgs('append_', frame_id, 'A-C') #--note: logic error here was fixed
+print('\n')
+
+response = fn.wait_4c_key('03')   #-- Begin lesson for APPEND after hit of c key here
+
 
 breakpoint()
 
 display_id = '(00)'
 user_choice = next_frame(display_id)
-print(f'debug at 187: this is the current display_id: {display_id}')
+#print(f'debug at 187: this is the current display_id: {display_id}')
 
 #def test(callback):
 #    print(callback.name)

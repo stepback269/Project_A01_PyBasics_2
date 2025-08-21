@@ -72,6 +72,38 @@ intro01_list_A = []
 intro01_list_B = []
 #--^^^-- Add function to step thru lists and print them out e.g. print intro_{display_id){next_abc}
 
+aside_001 = f'{v.z_}First "Aside" frame re: {v.yy_}The WEBSTER module{v.z_}'
+aside_001A = f'(a) There are {v.yy_}hundreds of External Modules{v.z_} (a.k.a. "Libraries"for Python)'
+aside_001B = f'See: https://www.youtube.com/results?search_query=external+libraries+python'
+aside_001C = f'(b) Some are very {v.yy_}simple like COLORAMA and WEBSTER{v.z_} (latter discussed here)'
+aside_001D = f'(c) Some are very complex and have a {v.yy_}steep learning curve{v.z_}'
+aside_001E = f'(e) WEBSTER in particualr has very {v.yy_}limited control{v.z_} over the local Web Browser'
+aside_001F = f'(f) WEBSTER can open new URL\'s in the Browser {v.r_}BUT CANNOT CLOSE THEM{v.z_} !!!!'
+aside_001G = f'\n\t{v.r_}PLEASE CLOSE THE THREE DEMO URL\'S OPENED IN THE CURRENT BROWSER{v.z_}\n'
+aside_001H = f'(1) A first  of the three links to {v.yy_}MUSIC TO CODE BY{v.z_} (e.g. Chill Flow)'
+aside_001I = f'(2) A second of the three links to {v.yy_}Old Man\'s Back Stage{v.z_} page'
+aside_001J = f'(3) A last   of the three links to {v.yy_}Old Man\'s Links for Python Noobs{v.z_} page'
+aside_001K = f'--^^^--- These ar {v.g_}just for Demo purposes{v.z_} of webster\'s capabilities'
+aside_001L = f'LOGIC ERROR IN WHILE LOOP that REQUIRED AN EXTRA MESSAGE LINE was fixed'
+
+
+aside_002 = f'{v.z_}Second "Aside" frame re: {v.yy_}AVOID SHINY DISTRACTIONS{v.z_}'
+aside_002A = f'(a) There are ALWAYS {v.yy_}One-better External Modules{v.z_} than your current ones'
+aside_002B = f'RICH may be {v.yy_}better than COLORAMA{v.z_}. SELENIUM may be {v.yy_}better than WEBSTER{v.z_}'
+aside_002C = f'(b) Each is a {v.r_}TEMPTATION{v.z_} to distract you from the {v.g_}PRImARY GOAL{v.z_}'
+aside_002D = f'And that is: TO LEARN THE FUNDAMENTALS FIRST (strings, lists, dictionaries, etc.'
+aside_002E = f'(c) So no more diversions. Let\'s get straight to the 11 LIST METHODS'
+
+append_02 = f'{v.yy_}THE APPEND() METHOD{v.z_}'
+append_02A = f'The append() function is built into all string objects'
+append_02B = f'The append() function is built into all string objects'
+append_02C = f'The append() function is built into all string objects'
+append_02D = f'The append() function is built into all string objects'
+append_02E = f'The append() function is built into all string objects'
+
+
+
+
 URL_music00A = f'https://www.youtube.com/watch?v=2szaePjsCIw'  #--vvv-- Description of this URL is next below
 URL_descip00A = f'Future Music Explodes Brain Power --Chill Vibes' #https://www.youtube.com/@ChillVibesMusic999
 URL_music00B = f'https://www.youtube.com/watch?v=FibqV8cU_tQ&list=PL3mW7rMEvWWPdj7ddPKAIJKRCz1P52GJi'
