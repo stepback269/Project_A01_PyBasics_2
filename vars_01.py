@@ -7,7 +7,7 @@ and avoiding use of the public COLORAMA module
 '''
 
 
-print(f'(1) The importation of vars_01 into Main has begun\n')
+# print(f'(1) The importation of vars_01 into Main has begun\n')
 
 
 #-- google "python syntax of an import from statement"
@@ -52,11 +52,11 @@ z_ = Ansii['LIGHT_CYAN'] + Ansi_['BLACK']
 x2= z_
 x3= Y_
 
-print(f'\n ********** This  is  a debug test in the vars module --line 55 **********\n')
-print(f'Direct refernce to Anssi[colr_name] works but shallow copy does not. Why?\n')
-print(f'{Ansii['YELLOW']}Hello {Ansii['GREEN']}World {Ansii['RED']}in col{Ansii['LIGHT_WHITE']}or\n\n')
+#print(f'\n ********** This  is  a debug test in the vars module --line 55 **********\n')
+#print(f'Direct refernce to Anssi[colr_name] works but shallow copy does not. Why?\n')
+#print(f'{Ansii['YELLOW']}Hello {Ansii['GREEN']}World {Ansii['RED']}in col{Ansii['LIGHT_WHITE']}or\n\n')
 yy_ = Ansii['YELLOW']; g_ = Ansii['GREEN']; r_ = Ansii['RED']; w_ = Ansii['LIGHT_WHITE']
-print(f'{yy_}This is a second {g_} attempt {r_} of color coding {w_} using the shallow copies')
+#print(f'{yy_}This is a second {g_} attempt {r_} of color coding {w_} using the shallow copies')
 
 #clr: dict = {'b':"BLACK", 'r':"RED", 'g':"GREEN", 'y':"YELLOW", 'u':"BLUE", 'm':"MAGENTA", 'c':"CYAN", 'w':"WHITE",
 #             'o':"RESET",
@@ -78,5 +78,5 @@ allowed_4_Style = 'DNHO'
 
 symbols_01 = "▃" * 20; symbols_02 = "▔" * 20; symbols_03 = "▚" * 20
 
-print(f'(1x) The importation of vars_01 into Main has finished\n')
+#print(f'(1x) The importation of vars_01 into Main has finished\n')
 

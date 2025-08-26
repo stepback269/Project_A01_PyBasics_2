@@ -1,22 +1,26 @@
-# Date: 8/19b/2025   current editing line = 122 !!!
+# Date: 8/25a/2025   current editing line = search for "NEW"
 
 # check out the Data Engineer: https://www.youtube.com/@GambillDataEngineering
 
 from . import vars_01 as v  #-- google "python syntax of an import from statement"
 from . import mssgs_01 as msg
 import keyboard
+import pyautogui as gu
+import webbrowser
 '''
 Although the MAIN module imports all the necessary module codes, this module must import the name-space aspects
 of those modules, namely, those of the vars_01 module plus those of the mssgs_01 module 
 '''
 
-# Use Ctrl + Shft + x to insert hash tag (#) and advance to next line (was used immediately below)
+# Use in PyCharm: Ctrl + Shft + x to insert hash tag (#) and advance to next line (was used immediately below)
 # ----------------------------------------------
 #print(f'(3) The importation of funcs_01 into Main has begun\n')
-#print(f'********** (3) This is a test run from inside the funcs module of color printout *******\n')
-#print(f'{v.Ansii["YELLOW"]}Is this Yellow?{v.Ansii["LIGHT_WHITE"]}\n')
-#print(f'{v.yy_} what about now using shallow copies? {v.w_}\n')
-#print(f'end of inside funcs test\n')
+
+
+def screen_clear():         #-- easy answer for frame alignment !!!
+    print('\n'*50)
+    gu.moveto(0,0)
+    return
 
 
 def ascii_fm_az(fm2: str = 'A-Z'):  #cap alpha's have the smaller ANSI code values than lower case
@@ -25,7 +29,7 @@ def ascii_fm_az(fm2: str = 'A-Z'):  #cap alpha's have the smaller ANSI code valu
     hi = lo_hi[1]; hi_ascii = ord(hi)
     #print(f'debug check list = {ascii_fm_az()}')  # -- verify that list contains ascii low and hi values
     return [lo_ascii-1, hi_ascii+1]
-# --^^-- noes re above func
+# --^^-- notes re above func
 #--^^^-- usage below
 # l_01 = ascii_fm_az('a-z') # returns a list of integers, the ANSI codes
 # ord returns the ascii or unicode of a string char, See:
@@ -113,9 +117,9 @@ def sl0(filler="*", times=40):   #-- separation line w no CRLF
     print(outp, end='')
     return None
 
-def slm(mssg="MID MESSAGE GOES HERE", filler="**", times=2):   #-- mid box messages
+def slm(mssg="MID MESSAGE GOES HERE", filler="**", width= 115-4):   #-- mid box messages
     d = get_dict('clr_')
-    width= 115-4; centr_fill=" "
+    centr_fill=" "
     outpmid: str = f"{filler}{mssg.center(width, centr_fill)}{filler}"
     print(outpmid)
     return None
@@ -166,18 +170,40 @@ def outp_list(list_name = msg.intro01_list_A, color = v.C_, indent=10):  ## 157
     #print(f'{x4}\nend of for loop hit <--a debug notification\n')
     return
 
+def webster_drive(mssg_type= 'URL_web', frame_id= '00', picks= 'A-Z'): ### NEW  !!!!
+    spc = ' '
+    URL_prefix = mssg_type + frame_id
+    #--^^^-- the URL name is a concat of prefix plus an alpha char (must be cap A-Z)
+    #--vvv-- set up to iterate thru to-be INDENTED messages, the lo_hi_range is a string
+    lo_hi = lo_hi_range.split(sep='-')  # get from and to chars & convert them to unicode integers
+    lo = lo_hi[0]; lo_ascii: int = ord(lo)
+    hi = lo_hi[1]; hi_ascii: int = ord(hi)
+    url_id_i = lo_ascii - 1
+    while url_id_i <= hi_ascii-1:     ### coding NOTE: terminater at -1 because ID is inc'ed in next step !!!!!
+        url_id_i += 1
+        url_id_txt = url_id_prefix + chr(url_id_i)   #-- iterate from A to Z (or other lo to hi)
+        gotten_url = getattr(msg, url_id_txt )    #-- HERE is where the mid message is assembled !!!
+        outp_url_i: str = f'{gotten_url}'
+        webbrowser.open(outp_url_i)
+    return
+
+
 def wait_4c_key(display_id = '(001)', allowed = f'"c" or "SPACE"'):
     intro_01x: str = f'Hit {v.g_}{allowed}{v.z_} to continue to next learning frame'
-    outp_01x: str = f'{v.R_}{display_id}: {intro_01x.center(90)}';
+    outp_01x: str = f'{v.R_}next = {display_id}--> {intro_01x.center(90)}';
     print(outp_01x)
+    reponse= 'xxx'
     wait_01 = True
     while wait_01 == True:
-        keyrd = keyboard.read_key().lower()  # -- do just one read opertion per while loop
+        keyrd = keyboard.read_key()  # -- do TWO ??? read opertions in outer while loop
+        keyrd = keyboard.read_key()  #--^^-- for debouncing the key?
+        keyrd = keyrd.lower()
         if keyrd == "c":  # if the "c" key is pressed
             wait_01 == False;
             response = 'c'
             # print('You Pressed the "c" key --this is a debug notification')
             break
+
         elif keyrd == "space":  # if the "space" key is pressed
             wait_01 == False;
             response = ' '
@@ -186,6 +212,13 @@ def wait_4c_key(display_id = '(001)', allowed = f'"c" or "SPACE"'):
         else:
             continue
     return response
+
+def clear_keybd_queue():
+    spin = 0
+    while spin <= 100:  # --- waste time to debounce the key BEFORE reading a c or space ???
+        #clear_queue = keyboard.read_key()
+        spin += 1
+    else: return
 
 def next_frame(display_id = '(00)'): ##169
     intro_01x: str = 'Hit "c" or "SPACE" to continue to next learning frame'
@@ -351,7 +384,7 @@ def gen_list_of_methods(): ##499
             pass
     return
 
-print(f'import of funcs has finished')
+#print(f'import of funcs has finished')
 
 # CODE DISCARD ZONE **************************************************************** vvvvvvv
 #print(f'importation of funcs is about to hit the cj() func')

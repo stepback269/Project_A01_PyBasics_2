@@ -1,23 +1,31 @@
-# Date: 8/21a/2025  "Turing Complete" revamp -joke based on recent Reddit interaction
-# Note: Python was crashing, see below. Now working on function list centerd messages
-# Escaping from Circular Import Hell here:
+# Date: 8/25b/2025  --Status: adding Webster drive function
+# previous problems: Escaping from Circular Import Hell, overcoming sticky keyboard keys, ...
 # https://steppingback269.blogspot.com/2025/08/crash-burn-rinse-and-repeat-your-slow.html
 '''
-This code was originally called Learn_List_Methods
-But the flow got very messy because I didn't know how to use modules and packages of modules
-In this revamp of the whole thing, we will have numbered lesson frames each of which starts with a Title Box
-Under the Title Box will be a demo of one or more concepts
-Then the user will be invited to either Continue to the next frame or get more info via the Internet (using Webster)
+The current program desing is lousy because:
+(a) it tries to store learning content in a .py file (the mssgs_01.py) file
+(b) it would be better if it stored lesson material in a CSV file (use non-comma delimiters) that is readble by other
+programs, including Obsidian
+(c) keep the current approach anyway and start over with a _04.py file
+In the proposed CSV approach (can't use CSV module because only one delimiter for all fileds) there will be: (1) a special
+start of line delimiter code followed by: (2) 3-char domain initials e.g. TXT, URL, IMG; (3) frame name prefix string;
+(4) frame ID number/name string; (5) in-frame, line ID number/namis string (A-Z); (6) main text section;
+(7) special line terminater code, (8) comments region until next, new line start code is encountered
+(d) STORE THE csv lines in LISTS
+ (e) each main lesson frame is followed by press of "c" or space for continue OR CTRL+SHIFT for showing URL options page
+
 ... more to follow
 
-Package_01 of modules will contain a messages module that tracks the messages presented to the user
-Package_01 also contains many of the functions previously store in the original Learn_List_Methods file
+Package_01 of modules contains a vars_01 module and a messages_01 module that tracks the messages presented to the user
+Package_01 also contains a funcs_01 module holding many of the functions previously store in the original
+Learn_List_Methods file
 '''
 
 import inspect
 import sys
 import os
 import keyboard             #--- enable single key press inputs
+import pyautogui as gu      #--- enable cursor control
 import webbrowser           #--- enable opening up desired URL's for learning frames
 import pyperclip            #--- enable use of clipboard
 #import random
@@ -27,42 +35,35 @@ from Package_01 import vars_01 as v  #-- google "python syntax of an import from
 from Package_01 import mssgs_01 as msg
 from Package_01 import funcs_01 as fn
 
-print(f'(4) we are now in Main at its line 30 after successfully importing funcs_01 last\n\n')
-
-print(f'********** (4) This is a test run from inside the MAIN module of color printout *******\n')
-
-print(f'{v.Ansii["YELLOW"]}Is this Yellow?{v.Ansii["LIGHT_WHITE"]} printed inside MAIN\n')
-print(f'{v.yy_} what about now using shallow copies? {v.w_}\n')
-print(f'end of inside MAIN coloring test --we are at line 36 inside MAIN\n')
-
-# This is first WELCOME mat using the imported functions (fn[dot] prefix)
+# Here is first WELCOME mat using the imported functions (fn[dot] prefix)
 spc = ' '
 display_id = '(00)'     #-- print initial welcome mat
+
 fn.sl1(display_id)      #-- get the sl1 function from the funcs module !!!
-fn.slm(msg.intro_00)    #-- middle line uses text fetched from the messages module !!!!
+fn.slm(msg.intro_00a)    #-- middle line 1 uses text fetched from the messages module !!!!
+fn.slm(msg.intro_00b)
 fn.sl2()
 
-#breakpoint()
-# *************************************************
-
 frame_id = '00'
-fn.outp_centrd_mssgs('intro_', frame_id, 'A-D')  #-- messages intro_00a thru intro_00e are the centerd ones
-fn.outp_in_mssgs('intro_', frame_id, 'F-K')
-print('\n')
+fn.outp_centrd_mssgs('intro_', frame_id, 'A-D')  #-- messages intro_00A thru intro_00D are centerd ones
+fn.outp_in_mssgs('intro_', frame_id, 'F-K')      #-- messages intro_00F thru intro_00K are listed
 
-response = fn.wait_4c_key('00.1')
+print('\n'*2)   #-- screen partial fill amount for id= '00'
+#--------------------------------------------#
+#fn.clear_keybd_queue()
+response = fn.wait_4c_key('00.1')   #--vv-- aside_001 is the next frame to be shown
+fn.screen_clear()
 
 display_id = '(00.1)'   #-- print GUI box for aside number 00.1
-fn.sl1(display_id, f'{v.g_}▉')      #-- get the sl1 function from the funcs module !!!
-fn.slm(msg.aside_001, f'{v.g_}▎▎')    #-- middle line uses text fetched from the messages module !!!!
-fn.sl2(f'{v.g_}▉')
+fn.sl1(display_id, f'{v.g_}▉', 78)      #-- get the sl1 function from the funcs module !!!
+fn.slm(msg.aside_001, f'{v.g_}▉▉')  #-- middle line uses text fetched from the messages module !!!!
+fn.sl2(f'{v.g_}▉', 80)
 
 frame_id = '001'
 fn.outp_in_mssgs('aside_', frame_id, 'A-K') #--note: logic error here was fixed
 print('\n')
 
-#print(f'REMEMBER TO {v.r_}MANUALLY CLOSE{v.z_} THREE WEB PAGES --MUSIC PLUS OLD MAN \n')
-# breakpoint()
+#------initial URL's demo----vvv---------------#
 
 url_00 = "https://www.youtube.com/watch?v=mhNg55_IYiw&list=RDmhNg55_IYiw&start_radio=1&t=189s" #chill flow music
 webbrowser.open(url_00)
@@ -75,33 +76,43 @@ webbrowser.open(url_01)
 url_02 = "https://steppingback269.blogspot.com/2025/07/links-for-python-noobs.html"
 webbrowser.open(url_02)
 #print("webster Old Man for NOOBS temporarily disabled at MAIN line 76 ??")
-# print(intro_01d, '\n')
 
-response = fn.wait_4c_key('00.2')   #-- SECOND "aside_" frame will follow this c key here
-
+#--------------------------------------------#
+#fn.clear_keybd_queue()
+response = fn.wait_4c_key('00.2')   #-- SECOND "aside_" frame number 002 follows this hit of the c key
+fn.screen_clear()
 display_id = '(00.2)'   #-- print GUI box for aside number 00.1
-fn.sl1(display_id, f'{v.g_}▉')      #-- get the sl1 function from the funcs module !!!
-fn.slm(msg.aside_002, f'{v.g_}▎▎')    #-- middle line uses text fetched from the messages module !!!!
-fn.sl2(f'{v.g_}▉')
+fn.sl1(display_id, f'{v.g_}▉', 77)      #-- get the sl1 function from the funcs module !!!
+fn.slm(msg.aside_002, f'{v.g_}▉▉')    #-- middle line uses text fetched from the messages module !!!!
+fn.sl2(f'{v.g_}▉', 80)
 
 frame_id = '002'
-fn.outp_in_mssgs('aside_', frame_id, 'A-E') #--note: logic error here was fixed
-print('\n')
+fn.outp_in_mssgs('aside_', frame_id, 'A-G') #--note: logic error here was fixed
+#print('\n'*10)
 
+print('\n'*7)   #-- screen fill amount for id= '01'
+#--------------------------------------------#
+#fn.clear_keybd_queue()
+response = fn.wait_4c_key('01')   #-- WHY NOT WAITING HERE ???Begin lesson for APPEND after hit of c key here
+#print(f'DEBUG mssg: Why did MAIN not wait for space key?\n\n')
+
+# breakpoint()
+
+display_id = '(01)'   #-- print GUI box for frame number 01
+
+fn.sl1(display_id, f'{v.g_}▉', 80)      #-- get the sl1 function from the funcs module !!!
+fn.slm(msg.append_01, f'{v.g_}▉▉', 97)    #-- middle line uses text fetched from the messages module !!!!
+fn.sl2(f'{v.g_}▉', 80)
+
+frame_id = '01'
+fn.outp_in_mssgs('append_', frame_id, 'A-K') #--note: logic error here was fixed
+
+print('\n'*0)   #-- screen fill amount for id= '02'
+#--------------------------------------------#
+#fn.clear_keybd_queue()
+# explore more options = ????
 response = fn.wait_4c_key('02')   #-- Begin lesson for APPEND after hit of c key here
-
-
 display_id = '(02)'   #-- print GUI box for frame number 02
-fn.sl1(display_id, f'{v.g_}▉')      #-- get the sl1 function from the funcs module !!!
-fn.slm(msg.append_02, f'{v.g_}▎▎')    #-- middle line uses text fetched from the messages module !!!!
-fn.sl2(f'{v.g_}▉')
-
-frame_id = '02'
-fn.outp_in_mssgs('append_', frame_id, 'A-C') #--note: logic error here was fixed
-print('\n')
-
-response = fn.wait_4c_key('03')   #-- Begin lesson for APPEND after hit of c key here
-
 
 breakpoint()
 
